@@ -1,0 +1,13 @@
+generated: '2026-08-26'
+method: probed
+source: https://api.provivi.com/admin/api
+limit_count: 0
+note: >-
+  No rate limits are documented, because nothing about this endpoint is documented. Live unauthenticated
+  responses were inspected on 2026-08-26 and carry NO rate-limit signalling of any kind: no X-RateLimit-*,
+  no RateLimit-*, no Retry-After. Observed response headers are Server, X-Powered-By, X-Keystone-App-Version,
+  Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Vary, Content-Type, Content-Length, ETag.
+  An agent calling this surface has no runtime signal to back off on. Honest zero.
+headers_observed: []
+status_on_exhaustion: unknown
+limits: []

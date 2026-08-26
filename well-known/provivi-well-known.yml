@@ -1,0 +1,57 @@
+generated: '2026-08-26'
+method: probed
+source: live GET probes of /.well-known/* on every host named in apis.yml
+note: >-
+  Every /.well-known/ path probed on both Provivi hosts returned 404. No WellKnown or SecurityTxt
+  pointer is emitted, because nothing was served. Recorded as an absence, which is valid data.
+  Separately, www.provivi.com answers HTTP 200 with the ~39.8KB Next.js page shell for ANY unknown
+  ROOT-level path (/openapi.json, /llms.txt, /robots.txt, /sitemap.xml all return the same body as
+  the /zzz-nonexistent-xyz control). Those 200s are soft-404s, not documents, and are recorded as
+  misses. The /.well-known/ prefix is exempt from that catch-all and returns real 404s.
+hit_count: 0
+soft_404_control:
+  url: https://www.provivi.com/zzz-nonexistent-xyz
+  status: 200
+  bytes: 39841
+  note: control probe for the root-level catch-all; identical shell served for /openapi.json, /llms.txt, /robots.txt and /sitemap.xml
+hosts:
+- host: https://www.provivi.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://api.provivi.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://provivi.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404

@@ -1,23 +1,127 @@
 aid: provivi
 name: Provivi
-description: 'Provivi is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Provivi, Inc. is an agricultural biotechnology company headquartered at 1701 Colorado Avenue, Santa
+  Monica, California, founded in 2013 by Pedro Coelho, Peter Meinhold and Nobel laureate Frances Arnold.
+  Provivi manufactures insect sex pheromones using a patented catalytic olefin-metathesis process that
+  cuts production cost far enough to make mating-disruption pest control economic on high-acreage row
+  crops — corn, rice and soy — rather than only on high-value specialty crops. Its commercial products
+  target fall armyworm (Spodoptera frugiperda) and are distributed through regional partners including
+  UPL in Mexico, Koppert in Brazil, AgNova in Australia, Andermatt in East Africa and Susbin in
+  Argentina. Provivi is not a software vendor: it runs no developer program, publishes no API
+  documentation, terms of use or pricing for machine access, and ships no SDKs. The only machine-readable
+  surface it operates is the undocumented KeystoneJS GraphQL backend that serves content to provivi.com.
+image: https://www.provivi.com/assets/favicon.png
 url: https://raw.githubusercontent.com/api-evangelist/provivi/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-08-26'
 modified: '2026-08-26'
 tags:
-- Company
-apis: []
+- Agriculture
+- AgTech
+- Biotechnology
+- Crop Protection
+- Pheromones
+- Sustainability
+- Content Management
+- GraphQL
+tags_raw:
+- agriculture
+- agtech
+- biotechnology
+- crop-protection
+- pheromones
+- sustainability
+- content-management
+- graphql
+apis:
+- name: Provivi Content GraphQL API
+  description: >-
+    The KeystoneJS 5 headless-CMS GraphQL backend that serves the provivi.com marketing site. It exposes
+    199 types, 83 query fields and 122 mutation fields covering the site's content model — Article,
+    PressRelease, Product, Page, Farmer, Investor, TeamMember, Faq, HeroBlock, Multimedia, Vimeo, Lang and
+    related lists. Anonymous introspection and anonymous read queries both succeed over HTTPS. Provivi
+    publishes no documentation, no reference, no terms of use and no support channel for this endpoint;
+    it is captured here as an observed public surface, not as a developer product.
+  humanURL: https://www.provivi.com/en
+  baseURL: https://api.provivi.com/admin/api
+  tags:
+  - GraphQL
+  - Content Management
+  - Agriculture
+  tags_raw:
+  - graphql
+  - content-management
+  - agriculture
+  properties:
+  - type: GraphQL
+    url: graphql/provivi-content-schema.graphql
+  - type: Authentication
+    url: authentication/provivi-authentication.yml
+  - type: Conventions
+    url: conventions/provivi-conventions.yml
+  - type: DataModel
+    url: data-model/provivi-data-model.yml
+  - type: ErrorCatalog
+    url: errors/provivi-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/provivi-rate-limits.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/provivi-domain-security.yml
 - type: Website
-  url: https://forgeglobal.com/provivi_stock/
+  url: https://www.provivi.com/en
+- type: Blog
+  url: https://www.provivi.com/en/news-articles
+- type: PressReleases
+  url: https://www.provivi.com/en/press-release
+- type: Support
+  url: https://www.provivi.com/en/contact-us
+- type: FAQ
+  url: https://www.provivi.com/en/frequently-asked-questions
+- type: TermsOfService
+  url: https://www.provivi.com/en/terms-service
+- type: PrivacyPolicy
+  url: https://www.provivi.com/en/privacy-policy
+- type: Careers
+  url: https://www.provivi.com/en/careers
+- type: LinkedIn
+  url: https://www.linkedin.com/company/provivi-inc-
+- type: Twitter
+  url: https://twitter.com/Provivitm
+- type: YouTube
+  url: https://www.youtube.com/channel/UCyb-kB-BI_xMpXO3bzmjrBA
+- type: GraphQL
+  url: graphql/provivi-content-schema.graphql
+- type: Authentication
+  url: authentication/provivi-authentication.yml
+- type: Conventions
+  url: conventions/provivi-conventions.yml
+- type: DataModel
+  url: data-model/provivi-data-model.yml
+- type: ErrorCatalog
+  url: errors/provivi-problem-types.yml
+- type: Conformance
+  url: conformance/provivi-conformance.yml
+- type: Lifecycle
+  url: lifecycle/provivi-lifecycle.yml
+- type: Plans
+  url: plans/provivi-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/provivi-rate-limits.yml
+- type: LLMsTxt
+  url: llms/provivi-llms.txt
+- type: Packages
+  url: packages/provivi-packages.yml
+x-enrichment:
+  date: '2026-08-26'
+  status: enriched
+  artifacts_added: 14
+  pass: local-v1

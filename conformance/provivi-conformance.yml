@@ -1,0 +1,49 @@
+generated: '2026-08-26'
+method: derived
+source: graphql/provivi-content-schema.graphql
+note: >-
+  Provivi makes no published compliance, certification or standards claims anywhere on provivi.com, and
+  operates no trust center. Every entry below is asserted from the contract itself or from a live probe,
+  never from a marketing claim. No Compliance pointer is emitted, because there is nothing published to
+  point at.
+standards:
+- id: graphql
+  conforms: true
+  evidence: >-
+    https://api.provivi.com/admin/api answers the standard __schema introspection query with a complete
+    introspection document (199 types), and returns the spec-defined errors[] envelope on an invalid
+    query. Apollo Server / GraphQL June 2018 spec behaviour. Probed 2026-08-26.
+- id: graphql-introspection
+  conforms: true
+  evidence: Full anonymous introspection enabled in production; SDL captured to graphql/provivi-content-schema.graphql.
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 flow declared or documented; /.well-known/oauth-authorization-server returns 404 on every host.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every host.
+- id: rfc9457
+  conforms: false
+  evidence: Errors use the GraphQL errors[] envelope at HTTP 200, not application/problem+json.
+- id: rfc9116
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on www.provivi.com, api.provivi.com and provivi.com.
+- id: pagination
+  conforms: true
+  evidence: Offset pagination via `first` / `skip` on every all<List> query field, with `_all<List>Meta { count }` totals.
+- id: idempotency
+  conforms: false
+  evidence: No idempotency key or semantics; no public write surface.
+domain_standard:
+  found: false
+  market: agriculture / crop protection
+  candidates_checked:
+  - AgGateway ADAPT
+  - ISOBUS / ISO 11783
+  - AGRIROUTE / agrirouter
+  - OGC / GeoJSON field boundaries
+  evidence: >-
+    The contract is a website content model (Article, Page, Product, Farmer, PressRelease). It declares no
+    agricultural data standard - no ADAPT, ISOBUS, agrirouter or field-boundary geometry types appear in
+    the schema, and Provivi publishes no data-exchange product. Reward-only dimension: nothing is invented
+    to fill the slot.

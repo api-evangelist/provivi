@@ -1,0 +1,44 @@
+generated: '2026-08-26'
+method: probed
+source: https://api.provivi.com/admin/api
+note: >-
+  Provivi publishes no authentication documentation, because it publishes no developer program. This
+  profile records the auth behaviour actually observed against the live endpoint. No credential of any
+  kind was used, and no write operation was attempted.
+schemes:
+- name: none
+  type: anonymous
+  in: n/a
+  applies_to: read
+  description: >-
+    GraphQL introspection and read queries on https://api.provivi.com/admin/api both succeed with no
+    Authorization header, no cookie and no API key. Verified 2026-08-26 - a full introspection query
+    returned HTTP 200 with 199 types, and `{ _allProductsMeta { count } }` returned live content counts.
+  evidence:
+    url: https://api.provivi.com/admin/api
+    http_status: 200
+    verified: '2026-08-26'
+- name: keystone-session
+  type: cookie
+  in: cookie
+  applies_to: write/admin
+  description: >-
+    KeystoneJS 5 session authentication. The schema declares `authenticatedUser`, `authenticateUserWithPassword`,
+    `unauthenticateUser` and a User list, which is the standard Keystone session model. Querying
+    `{ authenticatedUser { id } }` anonymously returns null, confirming no session is established for an
+    anonymous caller. Whether the 122 declared mutation fields are access-controlled was NOT tested:
+    this pipeline never executes write operations against a provider.
+  evidence:
+    url: https://api.provivi.com/admin/api
+    http_status: 200
+    verified: '2026-08-26'
+oauth2: false
+openid_connect: false
+api_keys: false
+mutual_tls: false
+docs: null
+observations:
+- >-
+  Access-Control-Allow-Origin is `*` with Access-Control-Allow-Credentials `true` on the GraphQL endpoint.
+- >-
+  Both POST and GET carry queries; GET https://api.provivi.com/admin/api?query={__typename} returned 200.

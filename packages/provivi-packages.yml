@@ -1,0 +1,11 @@
+generated: '2026-08-26'
+method: searched
+source: npm registry search, PyPI, GitHub org + repository search
+note: >-
+  No first-party Provivi client library exists on any public registry. Searched npm
+  (registry.npmjs.org/-/v1/search?text=provivi - zero results), PyPI (pypi.org/pypi/provivi/json - HTTP
+  404), and GitHub (api.github.com/orgs/provivi - HTTP 404; repository search returns only unrelated
+  third-party repos, several of them for "provivienda", a different company). Provivi ships no SDK, so no
+  SDKs pointer is emitted. Recorded as a measured absence.
+package_count: 0
+packages: []

@@ -1,0 +1,39 @@
+generated: '2026-08-26'
+method: probed
+source: https://www.provivi.com/en
+note: >-
+  Provivi publishes no API lifecycle surface of any kind. Recorded as measured absences; no StatusPage
+  and no Deprecation pointer is emitted, because neither exists.
+versioning:
+  scheme: none published
+  observed_header: 'X-Keystone-App-Version: 1.0.0'
+  note: framework-emitted header, not a Provivi versioning policy
+deprecation_policy:
+  published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  note: >-
+    Introspection returns isDeprecated=false on every field of the schema; no field carries a
+    deprecationReason.
+status_page:
+  published: false
+  probes:
+  - url: https://status.provivi.com
+    status: '<no DNS record>'
+sla:
+  published: false
+changelog:
+  published: false
+  note: >-
+    provivi.com has a News & Articles section and a Press Release section (both content, not release
+    notes). No dated changelog or release-notes surface exists for any software or API.
+support:
+  channel: https://www.provivi.com/en/contact-us
+  developer_support: false
+observations:
+- >-
+  The provivi.com footer links https://www.provivi.com/ (the customer app login referenced on the site as
+  Provivi-app.com). As of 2026-08-26 provivi-app.com does not resolve - NXDOMAIN on both provivi-app.com
+  and www.provivi-app.com - so that link is dead. Reported here as a finding for the provider, not scored.

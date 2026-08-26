@@ -1,0 +1,5987 @@
+# Provivi content GraphQL schema (KeystoneJS 5)
+# Retrieved verbatim by GraphQL introspection from the endpoint below.
+# Source: https://api.provivi.com/admin/api  (HTTP 200, anonymous introspection)
+# Retrieved: 2026-08-26
+# This is the headless-CMS backend that serves provivi.com. It is undocumented:
+# Provivi publishes no developer portal, no reference and no terms for it.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+"""DateTime custom scalar represents an ISO 8601 datetime string"""
+scalar DateTime
+
+"""The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."""
+scalar JSON
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
+enum SortArticlesBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  slug_ASC
+  slug_DESC
+  state_ASC
+  state_DESC
+  lang_ASC
+  lang_DESC
+  excerpt_ASC
+  excerpt_DESC
+  description_ASC
+  description_DESC
+  date_ASC
+  date_DESC
+  metaData_ASC
+  metaData_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortBannertypesBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  description_ASC
+  description_DESC
+  bannerType_ASC
+  bannerType_DESC
+  cta_ASC
+  cta_DESC
+  ctaUrl_ASC
+  ctaUrl_DESC
+  video_ASC
+  video_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortContentsBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  lang_ASC
+  lang_DESC
+  templateHomeBanner1_ASC
+  templateHomeBanner1_DESC
+  templateHomeArticles_ASC
+  templateHomeArticles_DESC
+  templateHomeFarmer_ASC
+  templateHomeFarmer_DESC
+  templateHomeVimeo_ASC
+  templateHomeVimeo_DESC
+  templateHomeArticleFeatured_ASC
+  templateHomeArticleFeatured_DESC
+  templateHomeFQA_ASC
+  templateHomeFQA_DESC
+  templateFarmerTitle_ASC
+  templateFarmerTitle_DESC
+  templateFarmerContent_ASC
+  templateFarmerContent_DESC
+  templateScienceTitle1_ASC
+  templateScienceTitle1_DESC
+  templateScienceContent1_ASC
+  templateScienceContent1_DESC
+  templateScienceTitle2_ASC
+  templateScienceTitle2_DESC
+  templateScienceContent2_ASC
+  templateScienceContent2_DESC
+  templateScienceTitle3_ASC
+  templateScienceTitle3_DESC
+  templateScienceContent3_ASC
+  templateScienceContent3_DESC
+  templateScienceTitle4_ASC
+  templateScienceTitle4_DESC
+  templateScienceContent4_ASC
+  templateScienceContent4_DESC
+  templateScienceBanner1_ASC
+  templateScienceBanner1_DESC
+  templateScienceVimeo_ASC
+  templateScienceVimeo_DESC
+  templateScienceFQA_ASC
+  templateScienceFQA_DESC
+  templateAboutUsTab1Title_ASC
+  templateAboutUsTab1Title_DESC
+  templateAboutUsTab1Content_ASC
+  templateAboutUsTab1Content_DESC
+  templateAboutUsTab1Video_ASC
+  templateAboutUsTab1Video_DESC
+  templateAboutUsTab2Title_ASC
+  templateAboutUsTab2Title_DESC
+  templateAboutUsTab2Content_ASC
+  templateAboutUsTab2Content_DESC
+  templateAboutUsTab3Title1_ASC
+  templateAboutUsTab3Title1_DESC
+  templateAboutUsTab3Content1_ASC
+  templateAboutUsTab3Content1_DESC
+  templateAboutUsTab3Title2_ASC
+  templateAboutUsTab3Title2_DESC
+  templateAboutUsTab3Content2_ASC
+  templateAboutUsTab3Content2_DESC
+  templateAboutUsTab3Title3_ASC
+  templateAboutUsTab3Title3_DESC
+  templateAboutUsTab3Content3_ASC
+  templateAboutUsTab3Content3_DESC
+  templateAboutUsTab3Banner_ASC
+  templateAboutUsTab3Banner_DESC
+  templateCareersContent_ASC
+  templateCareersContent_DESC
+  templateContactUsContent_ASC
+  templateContactUsContent_DESC
+  templatePrivacyPolicyContent_ASC
+  templatePrivacyPolicyContent_DESC
+  templateTermsOfServiceContent_ASC
+  templateTermsOfServiceContent_DESC
+  templatePrivacyPracticeContent_ASC
+  templatePrivacyPracticeContent_DESC
+  templateBrasilTermsContent_ASC
+  templateBrasilTermsContent_DESC
+  templateProductsSubTitle_ASC
+  templateProductsSubTitle_DESC
+  templateProductsBanner_ASC
+  templateProductsBanner_DESC
+  templateProductsFarmer_ASC
+  templateProductsFarmer_DESC
+  templateProductsVimeo_ASC
+  templateProductsVimeo_DESC
+  templateProductsFQA_ASC
+  templateProductsFQA_DESC
+  sustainabilityOurMissionContent1_ASC
+  sustainabilityOurMissionContent1_DESC
+  sustainabilityOurMissionContent2_ASC
+  sustainabilityOurMissionContent2_DESC
+  ourPurposeContent_ASC
+  ourPurposeContent_DESC
+  ourPurposeColumn1Title_ASC
+  ourPurposeColumn1Title_DESC
+  ourPurposeColumn1_ASC
+  ourPurposeColumn1_DESC
+  ourPurposeColumn2Title_ASC
+  ourPurposeColumn2Title_DESC
+  ourPurposeColumn2_ASC
+  ourPurposeColumn2_DESC
+  ourPurposeColumn3Title_ASC
+  ourPurposeColumn3Title_DESC
+  ourPurposeColumn3_ASC
+  ourPurposeColumn3_DESC
+  goalTitle_ASC
+  goalTitle_DESC
+  goalContent_ASC
+  goalContent_DESC
+  goals_ASC
+  goals_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortDepartmentsBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  titleEs_ASC
+  titleEs_DESC
+  titlePor_ASC
+  titlePor_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortFaqsBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  state_ASC
+  state_DESC
+  lang_ASC
+  lang_DESC
+  description_ASC
+  description_DESC
+  score_ASC
+  score_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortFarmersBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  slug_ASC
+  slug_DESC
+  state_ASC
+  state_DESC
+  lang_ASC
+  lang_DESC
+  order_ASC
+  order_DESC
+  country_ASC
+  country_DESC
+  city_ASC
+  city_DESC
+  description_ASC
+  description_DESC
+  quote_ASC
+  quote_DESC
+  vimeo_ASC
+  vimeo_DESC
+  video_ASC
+  video_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortGoalsBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortHeroBlocksBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortInvestorsBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  slug_ASC
+  slug_DESC
+  state_ASC
+  state_DESC
+  lang_ASC
+  lang_DESC
+  about_ASC
+  about_DESC
+  website_ASC
+  website_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortLangsBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  abbreviation_ASC
+  abbreviation_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortMultimediasBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortPagesBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  slug_ASC
+  slug_DESC
+  state_ASC
+  state_DESC
+  template_ASC
+  template_DESC
+  lang_ASC
+  lang_DESC
+  heroblock_ASC
+  heroblock_DESC
+  contactBannerBlock_ASC
+  contactBannerBlock_DESC
+  secondaryBannerBlock_ASC
+  secondaryBannerBlock_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortPressReleasesBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  slug_ASC
+  slug_DESC
+  state_ASC
+  state_DESC
+  lang_ASC
+  lang_DESC
+  subTitle_ASC
+  subTitle_DESC
+  shortDescription_ASC
+  shortDescription_DESC
+  description_ASC
+  description_DESC
+  date_ASC
+  date_DESC
+  mediaContactname_ASC
+  mediaContactname_DESC
+  mediaContactPhone_ASC
+  mediaContactPhone_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortProductsBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  slug_ASC
+  slug_DESC
+  state_ASC
+  state_DESC
+  lang_ASC
+  lang_DESC
+  registro_ASC
+  registro_DESC
+  excerpt_ASC
+  excerpt_DESC
+  content_ASC
+  content_DESC
+  introPage_ASC
+  introPage_DESC
+  subtitle_ASC
+  subtitle_DESC
+  video_ASC
+  video_DESC
+  download_ASC
+  download_DESC
+  heroblock_ASC
+  heroblock_DESC
+  bullet1_ASC
+  bullet1_DESC
+  bulletDescription1_ASC
+  bulletDescription1_DESC
+  tooltipSection1_ASC
+  tooltipSection1_DESC
+  bullet2_ASC
+  bullet2_DESC
+  bulletDescription2_ASC
+  bulletDescription2_DESC
+  tooltipSection2_ASC
+  tooltipSection2_DESC
+  bullet3_ASC
+  bullet3_DESC
+  bulletDescription3_ASC
+  bulletDescription3_DESC
+  tooltipSection3_ASC
+  tooltipSection3_DESC
+  bullet4_ASC
+  bullet4_DESC
+  bulletDescription4_ASC
+  bulletDescription4_DESC
+  tooltipSection4_ASC
+  tooltipSection4_DESC
+  bullet5_ASC
+  bullet5_DESC
+  bulletDescription5_ASC
+  bulletDescription5_DESC
+  tooltipSection5_ASC
+  tooltipSection5_DESC
+  bullet6_ASC
+  bullet6_DESC
+  bulletDescription6_ASC
+  bulletDescription6_DESC
+  tooltipSection6_ASC
+  tooltipSection6_DESC
+  contactBannerBlock_ASC
+  contactBannerBlock_DESC
+  titleSectionVideo1_ASC
+  titleSectionVideo1_DESC
+  textSectionVideo1_ASC
+  textSectionVideo1_DESC
+  textSectionVideo2_ASC
+  textSectionVideo2_DESC
+  titleSectionVideo3_ASC
+  titleSectionVideo3_DESC
+  textSectionVideo3_ASC
+  textSectionVideo3_DESC
+  titleSectionVideo4_ASC
+  titleSectionVideo4_DESC
+  textSectionVideo4_ASC
+  textSectionVideo4_DESC
+  faq_ASC
+  faq_DESC
+  article_ASC
+  article_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortPurposesBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortTeamMemberCountriesBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  titleEs_ASC
+  titleEs_DESC
+  titlePor_ASC
+  titlePor_DESC
+  name_ASC
+  name_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortTeamMemberPositionsBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  titleEs_ASC
+  titleEs_DESC
+  titlePor_ASC
+  titlePor_DESC
+  name_ASC
+  name_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortTeamMembersBy {
+  id_ASC
+  id_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  state_ASC
+  state_DESC
+  lang_ASC
+  lang_DESC
+  isFounder_ASC
+  isFounder_DESC
+  position_ASC
+  position_DESC
+  department_ASC
+  department_DESC
+  degree_ASC
+  degree_DESC
+  about_ASC
+  about_DESC
+  teamMemberCountry_ASC
+  teamMemberCountry_DESC
+  city_ASC
+  city_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortUsersBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+  isAdmin_ASC
+  isAdmin_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+enum SortVimeosBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  lang_ASC
+  lang_DESC
+  order_ASC
+  order_DESC
+  description_ASC
+  description_DESC
+  url_ASC
+  url_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updater_ASC
+  updater_DESC
+  creator_ASC
+  creator_DESC
+}
+
+input ArticleCreateInput {
+  title: String
+  slug: String
+  state: String
+  lang: LangRelateToManyInput
+  excerpt: String
+  description: String
+  date: String
+  thumbnail: Upload
+  image: Upload
+  metaData: String
+}
+
+input ArticleRelateToManyInput {
+  create: [ArticleCreateInput]
+  connect: [ArticleWhereUniqueInput]
+  disconnect: [ArticleWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input ArticleUpdateInput {
+  title: String
+  slug: String
+  state: String
+  lang: LangRelateToManyInput
+  excerpt: String
+  description: String
+  date: String
+  thumbnail: Upload
+  image: Upload
+  metaData: String
+}
+
+input ArticleWhereInput {
+  AND: [ArticleWhereInput]
+  OR: [ArticleWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  slug: String
+  slug_not: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  slug_i: String
+  slug_not_i: String
+  slug_contains_i: String
+  slug_not_contains_i: String
+  slug_starts_with_i: String
+  slug_not_starts_with_i: String
+  slug_ends_with_i: String
+  slug_not_ends_with_i: String
+  slug_in: [String]
+  slug_not_in: [String]
+  state: String
+  state_not: String
+  state_in: [String]
+  state_not_in: [String]
+  """condition must be true for all nodes"""
+  lang_every: LangWhereInput
+  """condition must be true for at least 1 node"""
+  lang_some: LangWhereInput
+  """condition must be false for all nodes"""
+  lang_none: LangWhereInput
+  """is the relation field null"""
+  lang_is_null: Boolean
+  excerpt: String
+  excerpt_not: String
+  excerpt_contains: String
+  excerpt_not_contains: String
+  excerpt_starts_with: String
+  excerpt_not_starts_with: String
+  excerpt_ends_with: String
+  excerpt_not_ends_with: String
+  excerpt_i: String
+  excerpt_not_i: String
+  excerpt_contains_i: String
+  excerpt_not_contains_i: String
+  excerpt_starts_with_i: String
+  excerpt_not_starts_with_i: String
+  excerpt_ends_with_i: String
+  excerpt_not_ends_with_i: String
+  excerpt_in: [String]
+  excerpt_not_in: [String]
+  description: String
+  description_not: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  description_i: String
+  description_not_i: String
+  description_contains_i: String
+  description_not_contains_i: String
+  description_starts_with_i: String
+  description_not_starts_with_i: String
+  description_ends_with_i: String
+  description_not_ends_with_i: String
+  description_in: [String]
+  description_not_in: [String]
+  date: String
+  date_not: String
+  date_lt: String
+  date_lte: String
+  date_gt: String
+  date_gte: String
+  date_in: [String]
+  date_not_in: [String]
+  thumbnail: String
+  thumbnail_not: String
+  thumbnail_contains: String
+  thumbnail_not_contains: String
+  thumbnail_starts_with: String
+  thumbnail_not_starts_with: String
+  thumbnail_ends_with: String
+  thumbnail_not_ends_with: String
+  thumbnail_in: [String]
+  thumbnail_not_in: [String]
+  image: String
+  image_not: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  image_in: [String]
+  image_not_in: [String]
+  metaData: String
+  metaData_not: String
+  metaData_contains: String
+  metaData_not_contains: String
+  metaData_starts_with: String
+  metaData_not_starts_with: String
+  metaData_ends_with: String
+  metaData_not_ends_with: String
+  metaData_i: String
+  metaData_not_i: String
+  metaData_contains_i: String
+  metaData_not_contains_i: String
+  metaData_starts_with_i: String
+  metaData_not_starts_with_i: String
+  metaData_ends_with_i: String
+  metaData_not_ends_with_i: String
+  metaData_in: [String]
+  metaData_not_in: [String]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input ArticleWhereUniqueInput {
+  id: ID!
+}
+
+input ArticlesCreateInput {
+  data: ArticleCreateInput
+}
+
+input ArticlesUpdateInput {
+  id: ID!
+  data: ArticleUpdateInput
+}
+
+input BannertypeCreateInput {
+  title: String
+  description: String
+  bannerType: String
+  cta: String
+  ctaUrl: String
+  video: VimeoRelateToOneInput
+  backgroundImage: Upload
+  image: Upload
+}
+
+input BannertypeRelateToOneInput {
+  create: BannertypeCreateInput
+  connect: BannertypeWhereUniqueInput
+  disconnect: BannertypeWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input BannertypeUpdateInput {
+  title: String
+  description: String
+  bannerType: String
+  cta: String
+  ctaUrl: String
+  video: VimeoRelateToOneInput
+  backgroundImage: Upload
+  image: Upload
+}
+
+input BannertypeWhereInput {
+  AND: [BannertypeWhereInput]
+  OR: [BannertypeWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  description: String
+  description_not: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  description_i: String
+  description_not_i: String
+  description_contains_i: String
+  description_not_contains_i: String
+  description_starts_with_i: String
+  description_not_starts_with_i: String
+  description_ends_with_i: String
+  description_not_ends_with_i: String
+  description_in: [String]
+  description_not_in: [String]
+  bannerType: String
+  bannerType_not: String
+  bannerType_in: [String]
+  bannerType_not_in: [String]
+  cta: String
+  cta_not: String
+  cta_contains: String
+  cta_not_contains: String
+  cta_starts_with: String
+  cta_not_starts_with: String
+  cta_ends_with: String
+  cta_not_ends_with: String
+  cta_i: String
+  cta_not_i: String
+  cta_contains_i: String
+  cta_not_contains_i: String
+  cta_starts_with_i: String
+  cta_not_starts_with_i: String
+  cta_ends_with_i: String
+  cta_not_ends_with_i: String
+  cta_in: [String]
+  cta_not_in: [String]
+  ctaUrl: String
+  ctaUrl_not: String
+  ctaUrl_contains: String
+  ctaUrl_not_contains: String
+  ctaUrl_starts_with: String
+  ctaUrl_not_starts_with: String
+  ctaUrl_ends_with: String
+  ctaUrl_not_ends_with: String
+  ctaUrl_i: String
+  ctaUrl_not_i: String
+  ctaUrl_contains_i: String
+  ctaUrl_not_contains_i: String
+  ctaUrl_starts_with_i: String
+  ctaUrl_not_starts_with_i: String
+  ctaUrl_ends_with_i: String
+  ctaUrl_not_ends_with_i: String
+  ctaUrl_in: [String]
+  ctaUrl_not_in: [String]
+  video: VimeoWhereInput
+  video_is_null: Boolean
+  backgroundImage: String
+  backgroundImage_not: String
+  backgroundImage_contains: String
+  backgroundImage_not_contains: String
+  backgroundImage_starts_with: String
+  backgroundImage_not_starts_with: String
+  backgroundImage_ends_with: String
+  backgroundImage_not_ends_with: String
+  backgroundImage_in: [String]
+  backgroundImage_not_in: [String]
+  image: String
+  image_not: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  image_in: [String]
+  image_not_in: [String]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input BannertypeWhereUniqueInput {
+  id: ID!
+}
+
+input BannertypesCreateInput {
+  data: BannertypeCreateInput
+}
+
+input BannertypesUpdateInput {
+  id: ID!
+  data: BannertypeUpdateInput
+}
+
+input ContentCreateInput {
+  name: String
+  lang: LangRelateToManyInput
+  templateHomeBanner1: BannertypeRelateToOneInput
+  templateHomeArticles: ArticleRelateToManyInput
+  templateHomeFarmer: FarmerRelateToManyInput
+  templateHomeVimeo: VimeoRelateToManyInput
+  templateHomeArticleFeatured: ArticleRelateToManyInput
+  templateHomeFQA: FaqRelateToManyInput
+  templateFarmerTitle: String
+  templateFarmerContent: String
+  templateScienceTitle1: String
+  templateScienceContent1: String
+  templateScienceTitle2: String
+  templateScienceContent2: String
+  templateScienceTitle3: String
+  templateScienceContent3: String
+  templateScienceTitle4: String
+  templateScienceContent4: String
+  templateScienceBanner1: BannertypeRelateToOneInput
+  templateScienceVimeo: VimeoRelateToManyInput
+  templateScienceFQA: FaqRelateToManyInput
+  templateAboutUsTab1Title: String
+  templateAboutUsTab1Content: String
+  templateAboutUsTab1Video: VimeoRelateToOneInput
+  templateAboutUsTab2Title: String
+  templateAboutUsTab2Content: String
+  templateAboutUsTab3Title1: String
+  templateAboutUsTab3Content1: String
+  templateAboutUsTab3Title2: String
+  templateAboutUsTab3Content2: String
+  templateAboutUsTab3Title3: String
+  templateAboutUsTab3Content3: String
+  templateAboutUsTab3Banner: BannertypeRelateToOneInput
+  templateCareersContent: String
+  templateContactUsContent: String
+  templatePrivacyPolicyContent: String
+  templateTermsOfServiceContent: String
+  templatePrivacyPracticeContent: String
+  templateBrasilTermsContent: String
+  templateProductsSubTitle: String
+  templateProductsBanner: BannertypeRelateToOneInput
+  templateProductsFarmer: FarmerRelateToManyInput
+  templateProductsVimeo: VimeoRelateToManyInput
+  templateProductsFQA: FaqRelateToManyInput
+  sustainabilityOurMissionContent1: String
+  sustainabilityOurMissionContent2: String
+  ourPurposeContent: String
+  ourPurposeColumn1Title: String
+  ourPurposeColumn1Image: Upload
+  ourPurposeColumn1: PurposeRelateToManyInput
+  ourPurposeColumn2Title: String
+  ourPurposeColumn2Image: Upload
+  ourPurposeColumn2: PurposeRelateToManyInput
+  ourPurposeColumn3Title: String
+  ourPurposeColumn3Image: Upload
+  ourPurposeColumn3: PurposeRelateToManyInput
+  goalTitle: String
+  goalContent: String
+  goalImage: Upload
+  goals: GoalRelateToManyInput
+}
+
+input ContentUpdateInput {
+  name: String
+  lang: LangRelateToManyInput
+  templateHomeBanner1: BannertypeRelateToOneInput
+  templateHomeArticles: ArticleRelateToManyInput
+  templateHomeFarmer: FarmerRelateToManyInput
+  templateHomeVimeo: VimeoRelateToManyInput
+  templateHomeArticleFeatured: ArticleRelateToManyInput
+  templateHomeFQA: FaqRelateToManyInput
+  templateFarmerTitle: String
+  templateFarmerContent: String
+  templateScienceTitle1: String
+  templateScienceContent1: String
+  templateScienceTitle2: String
+  templateScienceContent2: String
+  templateScienceTitle3: String
+  templateScienceContent3: String
+  templateScienceTitle4: String
+  templateScienceContent4: String
+  templateScienceBanner1: BannertypeRelateToOneInput
+  templateScienceVimeo: VimeoRelateToManyInput
+  templateScienceFQA: FaqRelateToManyInput
+  templateAboutUsTab1Title: String
+  templateAboutUsTab1Content: String
+  templateAboutUsTab1Video: VimeoRelateToOneInput
+  templateAboutUsTab2Title: String
+  templateAboutUsTab2Content: String
+  templateAboutUsTab3Title1: String
+  templateAboutUsTab3Content1: String
+  templateAboutUsTab3Title2: String
+  templateAboutUsTab3Content2: String
+  templateAboutUsTab3Title3: String
+  templateAboutUsTab3Content3: String
+  templateAboutUsTab3Banner: BannertypeRelateToOneInput
+  templateCareersContent: String
+  templateContactUsContent: String
+  templatePrivacyPolicyContent: String
+  templateTermsOfServiceContent: String
+  templatePrivacyPracticeContent: String
+  templateBrasilTermsContent: String
+  templateProductsSubTitle: String
+  templateProductsBanner: BannertypeRelateToOneInput
+  templateProductsFarmer: FarmerRelateToManyInput
+  templateProductsVimeo: VimeoRelateToManyInput
+  templateProductsFQA: FaqRelateToManyInput
+  sustainabilityOurMissionContent1: String
+  sustainabilityOurMissionContent2: String
+  ourPurposeContent: String
+  ourPurposeColumn1Title: String
+  ourPurposeColumn1Image: Upload
+  ourPurposeColumn1: PurposeRelateToManyInput
+  ourPurposeColumn2Title: String
+  ourPurposeColumn2Image: Upload
+  ourPurposeColumn2: PurposeRelateToManyInput
+  ourPurposeColumn3Title: String
+  ourPurposeColumn3Image: Upload
+  ourPurposeColumn3: PurposeRelateToManyInput
+  goalTitle: String
+  goalContent: String
+  goalImage: Upload
+  goals: GoalRelateToManyInput
+}
+
+input ContentWhereInput {
+  AND: [ContentWhereInput]
+  OR: [ContentWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  """condition must be true for all nodes"""
+  lang_every: LangWhereInput
+  """condition must be true for at least 1 node"""
+  lang_some: LangWhereInput
+  """condition must be false for all nodes"""
+  lang_none: LangWhereInput
+  """is the relation field null"""
+  lang_is_null: Boolean
+  templateHomeBanner1: BannertypeWhereInput
+  templateHomeBanner1_is_null: Boolean
+  """condition must be true for all nodes"""
+  templateHomeArticles_every: ArticleWhereInput
+  """condition must be true for at least 1 node"""
+  templateHomeArticles_some: ArticleWhereInput
+  """condition must be false for all nodes"""
+  templateHomeArticles_none: ArticleWhereInput
+  """is the relation field null"""
+  templateHomeArticles_is_null: Boolean
+  """condition must be true for all nodes"""
+  templateHomeFarmer_every: FarmerWhereInput
+  """condition must be true for at least 1 node"""
+  templateHomeFarmer_some: FarmerWhereInput
+  """condition must be false for all nodes"""
+  templateHomeFarmer_none: FarmerWhereInput
+  """is the relation field null"""
+  templateHomeFarmer_is_null: Boolean
+  """condition must be true for all nodes"""
+  templateHomeVimeo_every: VimeoWhereInput
+  """condition must be true for at least 1 node"""
+  templateHomeVimeo_some: VimeoWhereInput
+  """condition must be false for all nodes"""
+  templateHomeVimeo_none: VimeoWhereInput
+  """is the relation field null"""
+  templateHomeVimeo_is_null: Boolean
+  """condition must be true for all nodes"""
+  templateHomeArticleFeatured_every: ArticleWhereInput
+  """condition must be true for at least 1 node"""
+  templateHomeArticleFeatured_some: ArticleWhereInput
+  """condition must be false for all nodes"""
+  templateHomeArticleFeatured_none: ArticleWhereInput
+  """is the relation field null"""
+  templateHomeArticleFeatured_is_null: Boolean
+  """condition must be true for all nodes"""
+  templateHomeFQA_every: FaqWhereInput
+  """condition must be true for at least 1 node"""
+  templateHomeFQA_some: FaqWhereInput
+  """condition must be false for all nodes"""
+  templateHomeFQA_none: FaqWhereInput
+  """is the relation field null"""
+  templateHomeFQA_is_null: Boolean
+  templateFarmerTitle: String
+  templateFarmerTitle_not: String
+  templateFarmerTitle_contains: String
+  templateFarmerTitle_not_contains: String
+  templateFarmerTitle_starts_with: String
+  templateFarmerTitle_not_starts_with: String
+  templateFarmerTitle_ends_with: String
+  templateFarmerTitle_not_ends_with: String
+  templateFarmerTitle_i: String
+  templateFarmerTitle_not_i: String
+  templateFarmerTitle_contains_i: String
+  templateFarmerTitle_not_contains_i: String
+  templateFarmerTitle_starts_with_i: String
+  templateFarmerTitle_not_starts_with_i: String
+  templateFarmerTitle_ends_with_i: String
+  templateFarmerTitle_not_ends_with_i: String
+  templateFarmerTitle_in: [String]
+  templateFarmerTitle_not_in: [String]
+  templateFarmerContent: String
+  templateFarmerContent_not: String
+  templateFarmerContent_contains: String
+  templateFarmerContent_not_contains: String
+  templateFarmerContent_starts_with: String
+  templateFarmerContent_not_starts_with: String
+  templateFarmerContent_ends_with: String
+  templateFarmerContent_not_ends_with: String
+  templateFarmerContent_i: String
+  templateFarmerContent_not_i: String
+  templateFarmerContent_contains_i: String
+  templateFarmerContent_not_contains_i: String
+  templateFarmerContent_starts_with_i: String
+  templateFarmerContent_not_starts_with_i: String
+  templateFarmerContent_ends_with_i: String
+  templateFarmerContent_not_ends_with_i: String
+  templateFarmerContent_in: [String]
+  templateFarmerContent_not_in: [String]
+  templateScienceTitle1: String
+  templateScienceTitle1_not: String
+  templateScienceTitle1_contains: String
+  templateScienceTitle1_not_contains: String
+  templateScienceTitle1_starts_with: String
+  templateScienceTitle1_not_starts_with: String
+  templateScienceTitle1_ends_with: String
+  templateScienceTitle1_not_ends_with: String
+  templateScienceTitle1_i: String
+  templateScienceTitle1_not_i: String
+  templateScienceTitle1_contains_i: String
+  templateScienceTitle1_not_contains_i: String
+  templateScienceTitle1_starts_with_i: String
+  templateScienceTitle1_not_starts_with_i: String
+  templateScienceTitle1_ends_with_i: String
+  templateScienceTitle1_not_ends_with_i: String
+  templateScienceTitle1_in: [String]
+  templateScienceTitle1_not_in: [String]
+  templateScienceContent1: String
+  templateScienceContent1_not: String
+  templateScienceContent1_contains: String
+  templateScienceContent1_not_contains: String
+  templateScienceContent1_starts_with: String
+  templateScienceContent1_not_starts_with: String
+  templateScienceContent1_ends_with: String
+  templateScienceContent1_not_ends_with: String
+  templateScienceContent1_i: String
+  templateScienceContent1_not_i: String
+  templateScienceContent1_contains_i: String
+  templateScienceContent1_not_contains_i: String
+  templateScienceContent1_starts_with_i: String
+  templateScienceContent1_not_starts_with_i: String
+  templateScienceContent1_ends_with_i: String
+  templateScienceContent1_not_ends_with_i: String
+  templateScienceContent1_in: [String]
+  templateScienceContent1_not_in: [String]
+  templateScienceTitle2: String
+  templateScienceTitle2_not: String
+  templateScienceTitle2_contains: String
+  templateScienceTitle2_not_contains: String
+  templateScienceTitle2_starts_with: String
+  templateScienceTitle2_not_starts_with: String
+  templateScienceTitle2_ends_with: String
+  templateScienceTitle2_not_ends_with: String
+  templateScienceTitle2_i: String
+  templateScienceTitle2_not_i: String
+  templateScienceTitle2_contains_i: String
+  templateScienceTitle2_not_contains_i: String
+  templateScienceTitle2_starts_with_i: String
+  templateScienceTitle2_not_starts_with_i: String
+  templateScienceTitle2_ends_with_i: String
+  templateScienceTitle2_not_ends_with_i: String
+  templateScienceTitle2_in: [String]
+  templateScienceTitle2_not_in: [String]
+  templateScienceContent2: String
+  templateScienceContent2_not: String
+  templateScienceContent2_contains: String
+  templateScienceContent2_not_contains: String
+  templateScienceContent2_starts_with: String
+  templateScienceContent2_not_starts_with: String
+  templateScienceContent2_ends_with: String
+  templateScienceContent2_not_ends_with: String
+  templateScienceContent2_i: String
+  templateScienceContent2_not_i: String
+  templateScienceContent2_contains_i: String
+  templateScienceContent2_not_contains_i: String
+  templateScienceContent2_starts_with_i: String
+  templateScienceContent2_not_starts_with_i: String
+  templateScienceContent2_ends_with_i: String
+  templateScienceContent2_not_ends_with_i: String
+  templateScienceContent2_in: [String]
+  templateScienceContent2_not_in: [String]
+  templateScienceTitle3: String
+  templateScienceTitle3_not: String
+  templateScienceTitle3_contains: String
+  templateScienceTitle3_not_contains: String
+  templateScienceTitle3_starts_with: String
+  templateScienceTitle3_not_starts_with: String
+  templateScienceTitle3_ends_with: String
+  templateScienceTitle3_not_ends_with: String
+  templateScienceTitle3_i: String
+  templateScienceTitle3_not_i: String
+  templateScienceTitle3_contains_i: String
+  templateScienceTitle3_not_contains_i: String
+  templateScienceTitle3_starts_with_i: String
+  templateScienceTitle3_not_starts_with_i: String
+  templateScienceTitle3_ends_with_i: String
+  templateScienceTitle3_not_ends_with_i: String
+  templateScienceTitle3_in: [String]
+  templateScienceTitle3_not_in: [String]
+  templateScienceContent3: String
+  templateScienceContent3_not: String
+  templateScienceContent3_contains: String
+  templateScienceContent3_not_contains: String
+  templateScienceContent3_starts_with: String
+  templateScienceContent3_not_starts_with: String
+  templateScienceContent3_ends_with: String
+  templateScienceContent3_not_ends_with: String
+  templateScienceContent3_i: String
+  templateScienceContent3_not_i: String
+  templateScienceContent3_contains_i: String
+  templateScienceContent3_not_contains_i: String
+  templateScienceContent3_starts_with_i: String
+  templateScienceContent3_not_starts_with_i: String
+  templateScienceContent3_ends_with_i: String
+  templateScienceContent3_not_ends_with_i: String
+  templateScienceContent3_in: [String]
+  templateScienceContent3_not_in: [String]
+  templateScienceTitle4: String
+  templateScienceTitle4_not: String
+  templateScienceTitle4_contains: String
+  templateScienceTitle4_not_contains: String
+  templateScienceTitle4_starts_with: String
+  templateScienceTitle4_not_starts_with: String
+  templateScienceTitle4_ends_with: String
+  templateScienceTitle4_not_ends_with: String
+  templateScienceTitle4_i: String
+  templateScienceTitle4_not_i: String
+  templateScienceTitle4_contains_i: String
+  templateScienceTitle4_not_contains_i: String
+  templateScienceTitle4_starts_with_i: String
+  templateScienceTitle4_not_starts_with_i: String
+  templateScienceTitle4_ends_with_i: String
+  templateScienceTitle4_not_ends_with_i: String
+  templateScienceTitle4_in: [String]
+  templateScienceTitle4_not_in: [String]
+  templateScienceContent4: String
+  templateScienceContent4_not: String
+  templateScienceContent4_contains: String
+  templateScienceContent4_not_contains: String
+  templateScienceContent4_starts_with: String
+  templateScienceContent4_not_starts_with: String
+  templateScienceContent4_ends_with: String
+  templateScienceContent4_not_ends_with: String
+  templateScienceContent4_i: String
+  templateScienceContent4_not_i: String
+  templateScienceContent4_contains_i: String
+  templateScienceContent4_not_contains_i: String
+  templateScienceContent4_starts_with_i: String
+  templateScienceContent4_not_starts_with_i: String
+  templateScienceContent4_ends_with_i: String
+  templateScienceContent4_not_ends_with_i: String
+  templateScienceContent4_in: [String]
+  templateScienceContent4_not_in: [String]
+  templateScienceBanner1: BannertypeWhereInput
+  templateScienceBanner1_is_null: Boolean
+  """condition must be true for all nodes"""
+  templateScienceVimeo_every: VimeoWhereInput
+  """condition must be true for at least 1 node"""
+  templateScienceVimeo_some: VimeoWhereInput
+  """condition must be false for all nodes"""
+  templateScienceVimeo_none: VimeoWhereInput
+  """is the relation field null"""
+  templateScienceVimeo_is_null: Boolean
+  """condition must be true for all nodes"""
+  templateScienceFQA_every: FaqWhereInput
+  """condition must be true for at least 1 node"""
+  templateScienceFQA_some: FaqWhereInput
+  """condition must be false for all nodes"""
+  templateScienceFQA_none: FaqWhereInput
+  """is the relation field null"""
+  templateScienceFQA_is_null: Boolean
+  templateAboutUsTab1Title: String
+  templateAboutUsTab1Title_not: String
+  templateAboutUsTab1Title_contains: String
+  templateAboutUsTab1Title_not_contains: String
+  templateAboutUsTab1Title_starts_with: String
+  templateAboutUsTab1Title_not_starts_with: String
+  templateAboutUsTab1Title_ends_with: String
+  templateAboutUsTab1Title_not_ends_with: String
+  templateAboutUsTab1Title_i: String
+  templateAboutUsTab1Title_not_i: String
+  templateAboutUsTab1Title_contains_i: String
+  templateAboutUsTab1Title_not_contains_i: String
+  templateAboutUsTab1Title_starts_with_i: String
+  templateAboutUsTab1Title_not_starts_with_i: String
+  templateAboutUsTab1Title_ends_with_i: String
+  templateAboutUsTab1Title_not_ends_with_i: String
+  templateAboutUsTab1Title_in: [String]
+  templateAboutUsTab1Title_not_in: [String]
+  templateAboutUsTab1Content: String
+  templateAboutUsTab1Content_not: String
+  templateAboutUsTab1Content_contains: String
+  templateAboutUsTab1Content_not_contains: String
+  templateAboutUsTab1Content_starts_with: String
+  templateAboutUsTab1Content_not_starts_with: String
+  templateAboutUsTab1Content_ends_with: String
+  templateAboutUsTab1Content_not_ends_with: String
+  templateAboutUsTab1Content_i: String
+  templateAboutUsTab1Content_not_i: String
+  templateAboutUsTab1Content_contains_i: String
+  templateAboutUsTab1Content_not_contains_i: String
+  templateAboutUsTab1Content_starts_with_i: String
+  templateAboutUsTab1Content_not_starts_with_i: String
+  templateAboutUsTab1Content_ends_with_i: String
+  templateAboutUsTab1Content_not_ends_with_i: String
+  templateAboutUsTab1Content_in: [String]
+  templateAboutUsTab1Content_not_in: [String]
+  templateAboutUsTab1Video: VimeoWhereInput
+  templateAboutUsTab1Video_is_null: Boolean
+  templateAboutUsTab2Title: String
+  templateAboutUsTab2Title_not: String
+  templateAboutUsTab2Title_contains: String
+  templateAboutUsTab2Title_not_contains: String
+  templateAboutUsTab2Title_starts_with: String
+  templateAboutUsTab2Title_not_starts_with: String
+  templateAboutUsTab2Title_ends_with: String
+  templateAboutUsTab2Title_not_ends_with: String
+  templateAboutUsTab2Title_i: String
+  templateAboutUsTab2Title_not_i: String
+  templateAboutUsTab2Title_contains_i: String
+  templateAboutUsTab2Title_not_contains_i: String
+  templateAboutUsTab2Title_starts_with_i: String
+  templateAboutUsTab2Title_not_starts_with_i: String
+  templateAboutUsTab2Title_ends_with_i: String
+  templateAboutUsTab2Title_not_ends_with_i: String
+  templateAboutUsTab2Title_in: [String]
+  templateAboutUsTab2Title_not_in: [String]
+  templateAboutUsTab2Content: String
+  templateAboutUsTab2Content_not: String
+  templateAboutUsTab2Content_contains: String
+  templateAboutUsTab2Content_not_contains: String
+  templateAboutUsTab2Content_starts_with: String
+  templateAboutUsTab2Content_not_starts_with: String
+  templateAboutUsTab2Content_ends_with: String
+  templateAboutUsTab2Content_not_ends_with: String
+  templateAboutUsTab2Content_i: String
+  templateAboutUsTab2Content_not_i: String
+  templateAboutUsTab2Content_contains_i: String
+  templateAboutUsTab2Content_not_contains_i: String
+  templateAboutUsTab2Content_starts_with_i: String
+  templateAboutUsTab2Content_not_starts_with_i: String
+  templateAboutUsTab2Content_ends_with_i: String
+  templateAboutUsTab2Content_not_ends_with_i: String
+  templateAboutUsTab2Content_in: [String]
+  templateAboutUsTab2Content_not_in: [String]
+  templateAboutUsTab3Title1: String
+  templateAboutUsTab3Title1_not: String
+  templateAboutUsTab3Title1_contains: String
+  templateAboutUsTab3Title1_not_contains: String
+  templateAboutUsTab3Title1_starts_with: String
+  templateAboutUsTab3Title1_not_starts_with: String
+  templateAboutUsTab3Title1_ends_with: String
+  templateAboutUsTab3Title1_not_ends_with: String
+  templateAboutUsTab3Title1_i: String
+  templateAboutUsTab3Title1_not_i: String
+  templateAboutUsTab3Title1_contains_i: String
+  templateAboutUsTab3Title1_not_contains_i: String
+  templateAboutUsTab3Title1_starts_with_i: String
+  templateAboutUsTab3Title1_not_starts_with_i: String
+  templateAboutUsTab3Title1_ends_with_i: String
+  templateAboutUsTab3Title1_not_ends_with_i: String
+  templateAboutUsTab3Title1_in: [String]
+  templateAboutUsTab3Title1_not_in: [String]
+  templateAboutUsTab3Content1: String
+  templateAboutUsTab3Content1_not: String
+  templateAboutUsTab3Content1_contains: String
+  templateAboutUsTab3Content1_not_contains: String
+  templateAboutUsTab3Content1_starts_with: String
+  templateAboutUsTab3Content1_not_starts_with: String
+  templateAboutUsTab3Content1_ends_with: String
+  templateAboutUsTab3Content1_not_ends_with: String
+  templateAboutUsTab3Content1_i: String
+  templateAboutUsTab3Content1_not_i: String
+  templateAboutUsTab3Content1_contains_i: String
+  templateAboutUsTab3Content1_not_contains_i: String
+  templateAboutUsTab3Content1_starts_with_i: String
+  templateAboutUsTab3Content1_not_starts_with_i: String
+  templateAboutUsTab3Content1_ends_with_i: String
+  templateAboutUsTab3Content1_not_ends_with_i: String
+  templateAboutUsTab3Content1_in: [String]
+  templateAboutUsTab3Content1_not_in: [String]
+  templateAboutUsTab3Title2: String
+  templateAboutUsTab3Title2_not: String
+  templateAboutUsTab3Title2_contains: String
+  templateAboutUsTab3Title2_not_contains: String
+  templateAboutUsTab3Title2_starts_with: String
+  templateAboutUsTab3Title2_not_starts_with: String
+  templateAboutUsTab3Title2_ends_with: String
+  templateAboutUsTab3Title2_not_ends_with: String
+  templateAboutUsTab3Title2_i: String
+  templateAboutUsTab3Title2_not_i: String
+  templateAboutUsTab3Title2_contains_i: String
+  templateAboutUsTab3Title2_not_contains_i: String
+  templateAboutUsTab3Title2_starts_with_i: String
+  templateAboutUsTab3Title2_not_starts_with_i: String
+  templateAboutUsTab3Title2_ends_with_i: String
+  templateAboutUsTab3Title2_not_ends_with_i: String
+  templateAboutUsTab3Title2_in: [String]
+  templateAboutUsTab3Title2_not_in: [String]
+  templateAboutUsTab3Content2: String
+  templateAboutUsTab3Content2_not: String
+  templateAboutUsTab3Content2_contains: String
+  templateAboutUsTab3Content2_not_contains: String
+  templateAboutUsTab3Content2_starts_with: String
+  templateAboutUsTab3Content2_not_starts_with: String
+  templateAboutUsTab3Content2_ends_with: String
+  templateAboutUsTab3Content2_not_ends_with: String
+  templateAboutUsTab3Content2_i: String
+  templateAboutUsTab3Content2_not_i: String
+  templateAboutUsTab3Content2_contains_i: String
+  templateAboutUsTab3Content2_not_contains_i: String
+  templateAboutUsTab3Content2_starts_with_i: String
+  templateAboutUsTab3Content2_not_starts_with_i: String
+  templateAboutUsTab3Content2_ends_with_i: String
+  templateAboutUsTab3Content2_not_ends_with_i: String
+  templateAboutUsTab3Content2_in: [String]
+  templateAboutUsTab3Content2_not_in: [String]
+  templateAboutUsTab3Title3: String
+  templateAboutUsTab3Title3_not: String
+  templateAboutUsTab3Title3_contains: String
+  templateAboutUsTab3Title3_not_contains: String
+  templateAboutUsTab3Title3_starts_with: String
+  templateAboutUsTab3Title3_not_starts_with: String
+  templateAboutUsTab3Title3_ends_with: String
+  templateAboutUsTab3Title3_not_ends_with: String
+  templateAboutUsTab3Title3_i: String
+  templateAboutUsTab3Title3_not_i: String
+  templateAboutUsTab3Title3_contains_i: String
+  templateAboutUsTab3Title3_not_contains_i: String
+  templateAboutUsTab3Title3_starts_with_i: String
+  templateAboutUsTab3Title3_not_starts_with_i: String
+  templateAboutUsTab3Title3_ends_with_i: String
+  templateAboutUsTab3Title3_not_ends_with_i: String
+  templateAboutUsTab3Title3_in: [String]
+  templateAboutUsTab3Title3_not_in: [String]
+  templateAboutUsTab3Content3: String
+  templateAboutUsTab3Content3_not: String
+  templateAboutUsTab3Content3_contains: String
+  templateAboutUsTab3Content3_not_contains: String
+  templateAboutUsTab3Content3_starts_with: String
+  templateAboutUsTab3Content3_not_starts_with: String
+  templateAboutUsTab3Content3_ends_with: String
+  templateAboutUsTab3Content3_not_ends_with: String
+  templateAboutUsTab3Content3_i: String
+  templateAboutUsTab3Content3_not_i: String
+  templateAboutUsTab3Content3_contains_i: String
+  templateAboutUsTab3Content3_not_contains_i: String
+  templateAboutUsTab3Content3_starts_with_i: String
+  templateAboutUsTab3Content3_not_starts_with_i: String
+  templateAboutUsTab3Content3_ends_with_i: String
+  templateAboutUsTab3Content3_not_ends_with_i: String
+  templateAboutUsTab3Content3_in: [String]
+  templateAboutUsTab3Content3_not_in: [String]
+  templateAboutUsTab3Banner: BannertypeWhereInput
+  templateAboutUsTab3Banner_is_null: Boolean
+  templateCareersContent: String
+  templateCareersContent_not: String
+  templateCareersContent_contains: String
+  templateCareersContent_not_contains: String
+  templateCareersContent_starts_with: String
+  templateCareersContent_not_starts_with: String
+  templateCareersContent_ends_with: String
+  templateCareersContent_not_ends_with: String
+  templateCareersContent_i: String
+  templateCareersContent_not_i: String
+  templateCareersContent_contains_i: String
+  templateCareersContent_not_contains_i: String
+  templateCareersContent_starts_with_i: String
+  templateCareersContent_not_starts_with_i: String
+  templateCareersContent_ends_with_i: String
+  templateCareersContent_not_ends_with_i: String
+  templateCareersContent_in: [String]
+  templateCareersContent_not_in: [String]
+  templateContactUsContent: String
+  templateContactUsContent_not: String
+  templateContactUsContent_contains: String
+  templateContactUsContent_not_contains: String
+  templateContactUsContent_starts_with: String
+  templateContactUsContent_not_starts_with: String
+  templateContactUsContent_ends_with: String
+  templateContactUsContent_not_ends_with: String
+  templateContactUsContent_i: String
+  templateContactUsContent_not_i: String
+  templateContactUsContent_contains_i: String
+  templateContactUsContent_not_contains_i: String
+  templateContactUsContent_starts_with_i: String
+  templateContactUsContent_not_starts_with_i: String
+  templateContactUsContent_ends_with_i: String
+  templateContactUsContent_not_ends_with_i: String
+  templateContactUsContent_in: [String]
+  templateContactUsContent_not_in: [String]
+  templatePrivacyPolicyContent: String
+  templatePrivacyPolicyContent_not: String
+  templatePrivacyPolicyContent_contains: String
+  templatePrivacyPolicyContent_not_contains: String
+  templatePrivacyPolicyContent_starts_with: String
+  templatePrivacyPolicyContent_not_starts_with: String
+  templatePrivacyPolicyContent_ends_with: String
+  templatePrivacyPolicyContent_not_ends_with: String
+  templatePrivacyPolicyContent_i: String
+  templatePrivacyPolicyContent_not_i: String
+  templatePrivacyPolicyContent_contains_i: String
+  templatePrivacyPolicyContent_not_contains_i: String
+  templatePrivacyPolicyContent_starts_with_i: String
+  templatePrivacyPolicyContent_not_starts_with_i: String
+  templatePrivacyPolicyContent_ends_with_i: String
+  templatePrivacyPolicyContent_not_ends_with_i: String
+  templatePrivacyPolicyContent_in: [String]
+  templatePrivacyPolicyContent_not_in: [String]
+  templateTermsOfServiceContent: String
+  templateTermsOfServiceContent_not: String
+  templateTermsOfServiceContent_contains: String
+  templateTermsOfServiceContent_not_contains: String
+  templateTermsOfServiceContent_starts_with: String
+  templateTermsOfServiceContent_not_starts_with: String
+  templateTermsOfServiceContent_ends_with: String
+  templateTermsOfServiceContent_not_ends_with: String
+  templateTermsOfServiceContent_i: String
+  templateTermsOfServiceContent_not_i: String
+  templateTermsOfServiceContent_contains_i: String
+  templateTermsOfServiceContent_not_contains_i: String
+  templateTermsOfServiceContent_starts_with_i: String
+  templateTermsOfServiceContent_not_starts_with_i: String
+  templateTermsOfServiceContent_ends_with_i: String
+  templateTermsOfServiceContent_not_ends_with_i: String
+  templateTermsOfServiceContent_in: [String]
+  templateTermsOfServiceContent_not_in: [String]
+  templatePrivacyPracticeContent: String
+  templatePrivacyPracticeContent_not: String
+  templatePrivacyPracticeContent_contains: String
+  templatePrivacyPracticeContent_not_contains: String
+  templatePrivacyPracticeContent_starts_with: String
+  templatePrivacyPracticeContent_not_starts_with: String
+  templatePrivacyPracticeContent_ends_with: String
+  templatePrivacyPracticeContent_not_ends_with: String
+  templatePrivacyPracticeContent_i: String
+  templatePrivacyPracticeContent_not_i: String
+  templatePrivacyPracticeContent_contains_i: String
+  templatePrivacyPracticeContent_not_contains_i: String
+  templatePrivacyPracticeContent_starts_with_i: String
+  templatePrivacyPracticeContent_not_starts_with_i: String
+  templatePrivacyPracticeContent_ends_with_i: String
+  templatePrivacyPracticeContent_not_ends_with_i: String
+  templatePrivacyPracticeContent_in: [String]
+  templatePrivacyPracticeContent_not_in: [String]
+  templateBrasilTermsContent: String
+  templateBrasilTermsContent_not: String
+  templateBrasilTermsContent_contains: String
+  templateBrasilTermsContent_not_contains: String
+  templateBrasilTermsContent_starts_with: String
+  templateBrasilTermsContent_not_starts_with: String
+  templateBrasilTermsContent_ends_with: String
+  templateBrasilTermsContent_not_ends_with: String
+  templateBrasilTermsContent_i: String
+  templateBrasilTermsContent_not_i: String
+  templateBrasilTermsContent_contains_i: String
+  templateBrasilTermsContent_not_contains_i: String
+  templateBrasilTermsContent_starts_with_i: String
+  templateBrasilTermsContent_not_starts_with_i: String
+  templateBrasilTermsContent_ends_with_i: String
+  templateBrasilTermsContent_not_ends_with_i: String
+  templateBrasilTermsContent_in: [String]
+  templateBrasilTermsContent_not_in: [String]
+  templateProductsSubTitle: String
+  templateProductsSubTitle_not: String
+  templateProductsSubTitle_contains: String
+  templateProductsSubTitle_not_contains: String
+  templateProductsSubTitle_starts_with: String
+  templateProductsSubTitle_not_starts_with: String
+  templateProductsSubTitle_ends_with: String
+  templateProductsSubTitle_not_ends_with: String
+  templateProductsSubTitle_i: String
+  templateProductsSubTitle_not_i: String
+  templateProductsSubTitle_contains_i: String
+  templateProductsSubTitle_not_contains_i: String
+  templateProductsSubTitle_starts_with_i: String
+  templateProductsSubTitle_not_starts_with_i: String
+  templateProductsSubTitle_ends_with_i: String
+  templateProductsSubTitle_not_ends_with_i: String
+  templateProductsSubTitle_in: [String]
+  templateProductsSubTitle_not_in: [String]
+  templateProductsBanner: BannertypeWhereInput
+  templateProductsBanner_is_null: Boolean
+  """condition must be true for all nodes"""
+  templateProductsFarmer_every: FarmerWhereInput
+  """condition must be true for at least 1 node"""
+  templateProductsFarmer_some: FarmerWhereInput
+  """condition must be false for all nodes"""
+  templateProductsFarmer_none: FarmerWhereInput
+  """is the relation field null"""
+  templateProductsFarmer_is_null: Boolean
+  """condition must be true for all nodes"""
+  templateProductsVimeo_every: VimeoWhereInput
+  """condition must be true for at least 1 node"""
+  templateProductsVimeo_some: VimeoWhereInput
+  """condition must be false for all nodes"""
+  templateProductsVimeo_none: VimeoWhereInput
+  """is the relation field null"""
+  templateProductsVimeo_is_null: Boolean
+  """condition must be true for all nodes"""
+  templateProductsFQA_every: FaqWhereInput
+  """condition must be true for at least 1 node"""
+  templateProductsFQA_some: FaqWhereInput
+  """condition must be false for all nodes"""
+  templateProductsFQA_none: FaqWhereInput
+  """is the relation field null"""
+  templateProductsFQA_is_null: Boolean
+  sustainabilityOurMissionContent1: String
+  sustainabilityOurMissionContent1_not: String
+  sustainabilityOurMissionContent1_contains: String
+  sustainabilityOurMissionContent1_not_contains: String
+  sustainabilityOurMissionContent1_starts_with: String
+  sustainabilityOurMissionContent1_not_starts_with: String
+  sustainabilityOurMissionContent1_ends_with: String
+  sustainabilityOurMissionContent1_not_ends_with: String
+  sustainabilityOurMissionContent1_i: String
+  sustainabilityOurMissionContent1_not_i: String
+  sustainabilityOurMissionContent1_contains_i: String
+  sustainabilityOurMissionContent1_not_contains_i: String
+  sustainabilityOurMissionContent1_starts_with_i: String
+  sustainabilityOurMissionContent1_not_starts_with_i: String
+  sustainabilityOurMissionContent1_ends_with_i: String
+  sustainabilityOurMissionContent1_not_ends_with_i: String
+  sustainabilityOurMissionContent1_in: [String]
+  sustainabilityOurMissionContent1_not_in: [String]
+  sustainabilityOurMissionContent2: String
+  sustainabilityOurMissionContent2_not: String
+  sustainabilityOurMissionContent2_contains: String
+  sustainabilityOurMissionContent2_not_contains: String
+  sustainabilityOurMissionContent2_starts_with: String
+  sustainabilityOurMissionContent2_not_starts_with: String
+  sustainabilityOurMissionContent2_ends_with: String
+  sustainabilityOurMissionContent2_not_ends_with: String
+  sustainabilityOurMissionContent2_i: String
+  sustainabilityOurMissionContent2_not_i: String
+  sustainabilityOurMissionContent2_contains_i: String
+  sustainabilityOurMissionContent2_not_contains_i: String
+  sustainabilityOurMissionContent2_starts_with_i: String
+  sustainabilityOurMissionContent2_not_starts_with_i: String
+  sustainabilityOurMissionContent2_ends_with_i: String
+  sustainabilityOurMissionContent2_not_ends_with_i: String
+  sustainabilityOurMissionContent2_in: [String]
+  sustainabilityOurMissionContent2_not_in: [String]
+  ourPurposeContent: String
+  ourPurposeContent_not: String
+  ourPurposeContent_contains: String
+  ourPurposeContent_not_contains: String
+  ourPurposeContent_starts_with: String
+  ourPurposeContent_not_starts_with: String
+  ourPurposeContent_ends_with: String
+  ourPurposeContent_not_ends_with: String
+  ourPurposeContent_i: String
+  ourPurposeContent_not_i: String
+  ourPurposeContent_contains_i: String
+  ourPurposeContent_not_contains_i: String
+  ourPurposeContent_starts_with_i: String
+  ourPurposeContent_not_starts_with_i: String
+  ourPurposeContent_ends_with_i: String
+  ourPurposeContent_not_ends_with_i: String
+  ourPurposeContent_in: [String]
+  ourPurposeContent_not_in: [String]
+  ourPurposeColumn1Title: String
+  ourPurposeColumn1Title_not: String
+  ourPurposeColumn1Title_contains: String
+  ourPurposeColumn1Title_not_contains: String
+  ourPurposeColumn1Title_starts_with: String
+  ourPurposeColumn1Title_not_starts_with: String
+  ourPurposeColumn1Title_ends_with: String
+  ourPurposeColumn1Title_not_ends_with: String
+  ourPurposeColumn1Title_i: String
+  ourPurposeColumn1Title_not_i: String
+  ourPurposeColumn1Title_contains_i: String
+  ourPurposeColumn1Title_not_contains_i: String
+  ourPurposeColumn1Title_starts_with_i: String
+  ourPurposeColumn1Title_not_starts_with_i: String
+  ourPurposeColumn1Title_ends_with_i: String
+  ourPurposeColumn1Title_not_ends_with_i: String
+  ourPurposeColumn1Title_in: [String]
+  ourPurposeColumn1Title_not_in: [String]
+  ourPurposeColumn1Image: String
+  ourPurposeColumn1Image_not: String
+  ourPurposeColumn1Image_contains: String
+  ourPurposeColumn1Image_not_contains: String
+  ourPurposeColumn1Image_starts_with: String
+  ourPurposeColumn1Image_not_starts_with: String
+  ourPurposeColumn1Image_ends_with: String
+  ourPurposeColumn1Image_not_ends_with: String
+  ourPurposeColumn1Image_in: [String]
+  ourPurposeColumn1Image_not_in: [String]
+  """condition must be true for all nodes"""
+  ourPurposeColumn1_every: PurposeWhereInput
+  """condition must be true for at least 1 node"""
+  ourPurposeColumn1_some: PurposeWhereInput
+  """condition must be false for all nodes"""
+  ourPurposeColumn1_none: PurposeWhereInput
+  """is the relation field null"""
+  ourPurposeColumn1_is_null: Boolean
+  ourPurposeColumn2Title: String
+  ourPurposeColumn2Title_not: String
+  ourPurposeColumn2Title_contains: String
+  ourPurposeColumn2Title_not_contains: String
+  ourPurposeColumn2Title_starts_with: String
+  ourPurposeColumn2Title_not_starts_with: String
+  ourPurposeColumn2Title_ends_with: String
+  ourPurposeColumn2Title_not_ends_with: String
+  ourPurposeColumn2Title_i: String
+  ourPurposeColumn2Title_not_i: String
+  ourPurposeColumn2Title_contains_i: String
+  ourPurposeColumn2Title_not_contains_i: String
+  ourPurposeColumn2Title_starts_with_i: String
+  ourPurposeColumn2Title_not_starts_with_i: String
+  ourPurposeColumn2Title_ends_with_i: String
+  ourPurposeColumn2Title_not_ends_with_i: String
+  ourPurposeColumn2Title_in: [String]
+  ourPurposeColumn2Title_not_in: [String]
+  ourPurposeColumn2Image: String
+  ourPurposeColumn2Image_not: String
+  ourPurposeColumn2Image_contains: String
+  ourPurposeColumn2Image_not_contains: String
+  ourPurposeColumn2Image_starts_with: String
+  ourPurposeColumn2Image_not_starts_with: String
+  ourPurposeColumn2Image_ends_with: String
+  ourPurposeColumn2Image_not_ends_with: String
+  ourPurposeColumn2Image_in: [String]
+  ourPurposeColumn2Image_not_in: [String]
+  """condition must be true for all nodes"""
+  ourPurposeColumn2_every: PurposeWhereInput
+  """condition must be true for at least 1 node"""
+  ourPurposeColumn2_some: PurposeWhereInput
+  """condition must be false for all nodes"""
+  ourPurposeColumn2_none: PurposeWhereInput
+  """is the relation field null"""
+  ourPurposeColumn2_is_null: Boolean
+  ourPurposeColumn3Title: String
+  ourPurposeColumn3Title_not: String
+  ourPurposeColumn3Title_contains: String
+  ourPurposeColumn3Title_not_contains: String
+  ourPurposeColumn3Title_starts_with: String
+  ourPurposeColumn3Title_not_starts_with: String
+  ourPurposeColumn3Title_ends_with: String
+  ourPurposeColumn3Title_not_ends_with: String
+  ourPurposeColumn3Title_i: String
+  ourPurposeColumn3Title_not_i: String
+  ourPurposeColumn3Title_contains_i: String
+  ourPurposeColumn3Title_not_contains_i: String
+  ourPurposeColumn3Title_starts_with_i: String
+  ourPurposeColumn3Title_not_starts_with_i: String
+  ourPurposeColumn3Title_ends_with_i: String
+  ourPurposeColumn3Title_not_ends_with_i: String
+  ourPurposeColumn3Title_in: [String]
+  ourPurposeColumn3Title_not_in: [String]
+  ourPurposeColumn3Image: String
+  ourPurposeColumn3Image_not: String
+  ourPurposeColumn3Image_contains: String
+  ourPurposeColumn3Image_not_contains: String
+  ourPurposeColumn3Image_starts_with: String
+  ourPurposeColumn3Image_not_starts_with: String
+  ourPurposeColumn3Image_ends_with: String
+  ourPurposeColumn3Image_not_ends_with: String
+  ourPurposeColumn3Image_in: [String]
+  ourPurposeColumn3Image_not_in: [String]
+  """condition must be true for all nodes"""
+  ourPurposeColumn3_every: PurposeWhereInput
+  """condition must be true for at least 1 node"""
+  ourPurposeColumn3_some: PurposeWhereInput
+  """condition must be false for all nodes"""
+  ourPurposeColumn3_none: PurposeWhereInput
+  """is the relation field null"""
+  ourPurposeColumn3_is_null: Boolean
+  goalTitle: String
+  goalTitle_not: String
+  goalTitle_contains: String
+  goalTitle_not_contains: String
+  goalTitle_starts_with: String
+  goalTitle_not_starts_with: String
+  goalTitle_ends_with: String
+  goalTitle_not_ends_with: String
+  goalTitle_i: String
+  goalTitle_not_i: String
+  goalTitle_contains_i: String
+  goalTitle_not_contains_i: String
+  goalTitle_starts_with_i: String
+  goalTitle_not_starts_with_i: String
+  goalTitle_ends_with_i: String
+  goalTitle_not_ends_with_i: String
+  goalTitle_in: [String]
+  goalTitle_not_in: [String]
+  goalContent: String
+  goalContent_not: String
+  goalContent_contains: String
+  goalContent_not_contains: String
+  goalContent_starts_with: String
+  goalContent_not_starts_with: String
+  goalContent_ends_with: String
+  goalContent_not_ends_with: String
+  goalContent_i: String
+  goalContent_not_i: String
+  goalContent_contains_i: String
+  goalContent_not_contains_i: String
+  goalContent_starts_with_i: String
+  goalContent_not_starts_with_i: String
+  goalContent_ends_with_i: String
+  goalContent_not_ends_with_i: String
+  goalContent_in: [String]
+  goalContent_not_in: [String]
+  goalImage: String
+  goalImage_not: String
+  goalImage_contains: String
+  goalImage_not_contains: String
+  goalImage_starts_with: String
+  goalImage_not_starts_with: String
+  goalImage_ends_with: String
+  goalImage_not_ends_with: String
+  goalImage_in: [String]
+  goalImage_not_in: [String]
+  """condition must be true for all nodes"""
+  goals_every: GoalWhereInput
+  """condition must be true for at least 1 node"""
+  goals_some: GoalWhereInput
+  """condition must be false for all nodes"""
+  goals_none: GoalWhereInput
+  """is the relation field null"""
+  goals_is_null: Boolean
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input ContentWhereUniqueInput {
+  id: ID!
+}
+
+input ContentsCreateInput {
+  data: ContentCreateInput
+}
+
+input ContentsUpdateInput {
+  id: ID!
+  data: ContentUpdateInput
+}
+
+input DepartmentCreateInput {
+  title: String
+  titleEs: String
+  titlePor: String
+}
+
+input DepartmentRelateToOneInput {
+  create: DepartmentCreateInput
+  connect: DepartmentWhereUniqueInput
+  disconnect: DepartmentWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input DepartmentUpdateInput {
+  title: String
+  titleEs: String
+  titlePor: String
+}
+
+input DepartmentWhereInput {
+  AND: [DepartmentWhereInput]
+  OR: [DepartmentWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  titleEs: String
+  titleEs_not: String
+  titleEs_contains: String
+  titleEs_not_contains: String
+  titleEs_starts_with: String
+  titleEs_not_starts_with: String
+  titleEs_ends_with: String
+  titleEs_not_ends_with: String
+  titleEs_i: String
+  titleEs_not_i: String
+  titleEs_contains_i: String
+  titleEs_not_contains_i: String
+  titleEs_starts_with_i: String
+  titleEs_not_starts_with_i: String
+  titleEs_ends_with_i: String
+  titleEs_not_ends_with_i: String
+  titleEs_in: [String]
+  titleEs_not_in: [String]
+  titlePor: String
+  titlePor_not: String
+  titlePor_contains: String
+  titlePor_not_contains: String
+  titlePor_starts_with: String
+  titlePor_not_starts_with: String
+  titlePor_ends_with: String
+  titlePor_not_ends_with: String
+  titlePor_i: String
+  titlePor_not_i: String
+  titlePor_contains_i: String
+  titlePor_not_contains_i: String
+  titlePor_starts_with_i: String
+  titlePor_not_starts_with_i: String
+  titlePor_ends_with_i: String
+  titlePor_not_ends_with_i: String
+  titlePor_in: [String]
+  titlePor_not_in: [String]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input DepartmentWhereUniqueInput {
+  id: ID!
+}
+
+input DepartmentsCreateInput {
+  data: DepartmentCreateInput
+}
+
+input DepartmentsUpdateInput {
+  id: ID!
+  data: DepartmentUpdateInput
+}
+
+input FaqCreateInput {
+  title: String
+  state: String
+  lang: LangRelateToManyInput
+  description: String
+  score: String
+}
+
+input FaqRelateToManyInput {
+  create: [FaqCreateInput]
+  connect: [FaqWhereUniqueInput]
+  disconnect: [FaqWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input FaqUpdateInput {
+  title: String
+  state: String
+  lang: LangRelateToManyInput
+  description: String
+  score: String
+}
+
+input FaqWhereInput {
+  AND: [FaqWhereInput]
+  OR: [FaqWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  state: String
+  state_not: String
+  state_in: [String]
+  state_not_in: [String]
+  """condition must be true for all nodes"""
+  lang_every: LangWhereInput
+  """condition must be true for at least 1 node"""
+  lang_some: LangWhereInput
+  """condition must be false for all nodes"""
+  lang_none: LangWhereInput
+  """is the relation field null"""
+  lang_is_null: Boolean
+  description: String
+  description_not: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  description_i: String
+  description_not_i: String
+  description_contains_i: String
+  description_not_contains_i: String
+  description_starts_with_i: String
+  description_not_starts_with_i: String
+  description_ends_with_i: String
+  description_not_ends_with_i: String
+  description_in: [String]
+  description_not_in: [String]
+  score: String
+  score_not: String
+  score_lt: String
+  score_lte: String
+  score_gt: String
+  score_gte: String
+  score_in: [String]
+  score_not_in: [String]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input FaqWhereUniqueInput {
+  id: ID!
+}
+
+input FaqsCreateInput {
+  data: FaqCreateInput
+}
+
+input FaqsUpdateInput {
+  id: ID!
+  data: FaqUpdateInput
+}
+
+input FarmerCreateInput {
+  title: String
+  slug: String
+  state: String
+  lang: LangRelateToManyInput
+  order: Int
+  picture: Upload
+  country: String
+  city: String
+  description: String
+  quote: String
+  vimeo: VimeoRelateToOneInput
+  video: VimeoRelateToManyInput
+}
+
+input FarmerRelateToManyInput {
+  create: [FarmerCreateInput]
+  connect: [FarmerWhereUniqueInput]
+  disconnect: [FarmerWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input FarmerUpdateInput {
+  title: String
+  slug: String
+  state: String
+  lang: LangRelateToManyInput
+  order: Int
+  picture: Upload
+  country: String
+  city: String
+  description: String
+  quote: String
+  vimeo: VimeoRelateToOneInput
+  video: VimeoRelateToManyInput
+}
+
+input FarmerWhereInput {
+  AND: [FarmerWhereInput]
+  OR: [FarmerWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  slug: String
+  slug_not: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  slug_i: String
+  slug_not_i: String
+  slug_contains_i: String
+  slug_not_contains_i: String
+  slug_starts_with_i: String
+  slug_not_starts_with_i: String
+  slug_ends_with_i: String
+  slug_not_ends_with_i: String
+  slug_in: [String]
+  slug_not_in: [String]
+  state: String
+  state_not: String
+  state_in: [String]
+  state_not_in: [String]
+  """condition must be true for all nodes"""
+  lang_every: LangWhereInput
+  """condition must be true for at least 1 node"""
+  lang_some: LangWhereInput
+  """condition must be false for all nodes"""
+  lang_none: LangWhereInput
+  """is the relation field null"""
+  lang_is_null: Boolean
+  order: Int
+  order_not: Int
+  order_lt: Int
+  order_lte: Int
+  order_gt: Int
+  order_gte: Int
+  order_in: [Int]
+  order_not_in: [Int]
+  picture: String
+  picture_not: String
+  picture_contains: String
+  picture_not_contains: String
+  picture_starts_with: String
+  picture_not_starts_with: String
+  picture_ends_with: String
+  picture_not_ends_with: String
+  picture_in: [String]
+  picture_not_in: [String]
+  country: String
+  country_not: String
+  country_in: [String]
+  country_not_in: [String]
+  city: String
+  city_not: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
+  city_i: String
+  city_not_i: String
+  city_contains_i: String
+  city_not_contains_i: String
+  city_starts_with_i: String
+  city_not_starts_with_i: String
+  city_ends_with_i: String
+  city_not_ends_with_i: String
+  city_in: [String]
+  city_not_in: [String]
+  description: String
+  description_not: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  description_i: String
+  description_not_i: String
+  description_contains_i: String
+  description_not_contains_i: String
+  description_starts_with_i: String
+  description_not_starts_with_i: String
+  description_ends_with_i: String
+  description_not_ends_with_i: String
+  description_in: [String]
+  description_not_in: [String]
+  quote: String
+  quote_not: String
+  quote_contains: String
+  quote_not_contains: String
+  quote_starts_with: String
+  quote_not_starts_with: String
+  quote_ends_with: String
+  quote_not_ends_with: String
+  quote_i: String
+  quote_not_i: String
+  quote_contains_i: String
+  quote_not_contains_i: String
+  quote_starts_with_i: String
+  quote_not_starts_with_i: String
+  quote_ends_with_i: String
+  quote_not_ends_with_i: String
+  quote_in: [String]
+  quote_not_in: [String]
+  vimeo: VimeoWhereInput
+  vimeo_is_null: Boolean
+  """condition must be true for all nodes"""
+  video_every: VimeoWhereInput
+  """condition must be true for at least 1 node"""
+  video_some: VimeoWhereInput
+  """condition must be false for all nodes"""
+  video_none: VimeoWhereInput
+  """is the relation field null"""
+  video_is_null: Boolean
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input FarmerWhereUniqueInput {
+  id: ID!
+}
+
+input FarmersCreateInput {
+  data: FarmerCreateInput
+}
+
+input FarmersUpdateInput {
+  id: ID!
+  data: FarmerUpdateInput
+}
+
+input GoalCreateInput {
+  title: String
+  icon: Upload
+}
+
+input GoalRelateToManyInput {
+  create: [GoalCreateInput]
+  connect: [GoalWhereUniqueInput]
+  disconnect: [GoalWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input GoalUpdateInput {
+  title: String
+  icon: Upload
+}
+
+input GoalWhereInput {
+  AND: [GoalWhereInput]
+  OR: [GoalWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  icon: String
+  icon_not: String
+  icon_contains: String
+  icon_not_contains: String
+  icon_starts_with: String
+  icon_not_starts_with: String
+  icon_ends_with: String
+  icon_not_ends_with: String
+  icon_in: [String]
+  icon_not_in: [String]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input GoalWhereUniqueInput {
+  id: ID!
+}
+
+input GoalsCreateInput {
+  data: GoalCreateInput
+}
+
+input GoalsUpdateInput {
+  id: ID!
+  data: GoalUpdateInput
+}
+
+input HeroBlockCreateInput {
+  title: String
+  backgroundImage: Upload
+}
+
+input HeroBlockRelateToOneInput {
+  create: HeroBlockCreateInput
+  connect: HeroBlockWhereUniqueInput
+  disconnect: HeroBlockWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input HeroBlockUpdateInput {
+  title: String
+  backgroundImage: Upload
+}
+
+input HeroBlockWhereInput {
+  AND: [HeroBlockWhereInput]
+  OR: [HeroBlockWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  backgroundImage: String
+  backgroundImage_not: String
+  backgroundImage_contains: String
+  backgroundImage_not_contains: String
+  backgroundImage_starts_with: String
+  backgroundImage_not_starts_with: String
+  backgroundImage_ends_with: String
+  backgroundImage_not_ends_with: String
+  backgroundImage_in: [String]
+  backgroundImage_not_in: [String]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input HeroBlockWhereUniqueInput {
+  id: ID!
+}
+
+input HeroBlocksCreateInput {
+  data: HeroBlockCreateInput
+}
+
+input HeroBlocksUpdateInput {
+  id: ID!
+  data: HeroBlockUpdateInput
+}
+
+input InvestorCreateInput {
+  title: String
+  slug: String
+  state: String
+  lang: LangRelateToManyInput
+  about: String
+  image: Upload
+  website: String
+}
+
+input InvestorUpdateInput {
+  title: String
+  slug: String
+  state: String
+  lang: LangRelateToManyInput
+  about: String
+  image: Upload
+  website: String
+}
+
+input InvestorWhereInput {
+  AND: [InvestorWhereInput]
+  OR: [InvestorWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  slug: String
+  slug_not: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  slug_i: String
+  slug_not_i: String
+  slug_contains_i: String
+  slug_not_contains_i: String
+  slug_starts_with_i: String
+  slug_not_starts_with_i: String
+  slug_ends_with_i: String
+  slug_not_ends_with_i: String
+  slug_in: [String]
+  slug_not_in: [String]
+  state: String
+  state_not: String
+  state_in: [String]
+  state_not_in: [String]
+  """condition must be true for all nodes"""
+  lang_every: LangWhereInput
+  """condition must be true for at least 1 node"""
+  lang_some: LangWhereInput
+  """condition must be false for all nodes"""
+  lang_none: LangWhereInput
+  """is the relation field null"""
+  lang_is_null: Boolean
+  about: String
+  about_not: String
+  about_contains: String
+  about_not_contains: String
+  about_starts_with: String
+  about_not_starts_with: String
+  about_ends_with: String
+  about_not_ends_with: String
+  about_i: String
+  about_not_i: String
+  about_contains_i: String
+  about_not_contains_i: String
+  about_starts_with_i: String
+  about_not_starts_with_i: String
+  about_ends_with_i: String
+  about_not_ends_with_i: String
+  about_in: [String]
+  about_not_in: [String]
+  image: String
+  image_not: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  image_in: [String]
+  image_not_in: [String]
+  website: String
+  website_not: String
+  website_contains: String
+  website_not_contains: String
+  website_starts_with: String
+  website_not_starts_with: String
+  website_ends_with: String
+  website_not_ends_with: String
+  website_i: String
+  website_not_i: String
+  website_contains_i: String
+  website_not_contains_i: String
+  website_starts_with_i: String
+  website_not_starts_with_i: String
+  website_ends_with_i: String
+  website_not_ends_with_i: String
+  website_in: [String]
+  website_not_in: [String]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input InvestorWhereUniqueInput {
+  id: ID!
+}
+
+input InvestorsCreateInput {
+  data: InvestorCreateInput
+}
+
+input InvestorsUpdateInput {
+  id: ID!
+  data: InvestorUpdateInput
+}
+
+input LangCreateInput {
+  name: String
+  abbreviation: String
+}
+
+input LangRelateToManyInput {
+  create: [LangCreateInput]
+  connect: [LangWhereUniqueInput]
+  disconnect: [LangWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input LangUpdateInput {
+  name: String
+  abbreviation: String
+}
+
+input LangWhereInput {
+  AND: [LangWhereInput]
+  OR: [LangWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  abbreviation: String
+  abbreviation_not: String
+  abbreviation_contains: String
+  abbreviation_not_contains: String
+  abbreviation_starts_with: String
+  abbreviation_not_starts_with: String
+  abbreviation_ends_with: String
+  abbreviation_not_ends_with: String
+  abbreviation_i: String
+  abbreviation_not_i: String
+  abbreviation_contains_i: String
+  abbreviation_not_contains_i: String
+  abbreviation_starts_with_i: String
+  abbreviation_not_starts_with_i: String
+  abbreviation_ends_with_i: String
+  abbreviation_not_ends_with_i: String
+  abbreviation_in: [String]
+  abbreviation_not_in: [String]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input LangWhereUniqueInput {
+  id: ID!
+}
+
+input LangsCreateInput {
+  data: LangCreateInput
+}
+
+input LangsUpdateInput {
+  id: ID!
+  data: LangUpdateInput
+}
+
+input MultimediaCreateInput {
+  title: String
+  file: Upload
+}
+
+input MultimediaRelateToManyInput {
+  create: [MultimediaCreateInput]
+  connect: [MultimediaWhereUniqueInput]
+  disconnect: [MultimediaWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input MultimediaUpdateInput {
+  title: String
+  file: Upload
+}
+
+input MultimediaWhereInput {
+  AND: [MultimediaWhereInput]
+  OR: [MultimediaWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  file: String
+  file_not: String
+  file_contains: String
+  file_not_contains: String
+  file_starts_with: String
+  file_not_starts_with: String
+  file_ends_with: String
+  file_not_ends_with: String
+  file_in: [String]
+  file_not_in: [String]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input MultimediaWhereUniqueInput {
+  id: ID!
+}
+
+input MultimediasCreateInput {
+  data: MultimediaCreateInput
+}
+
+input MultimediasUpdateInput {
+  id: ID!
+  data: MultimediaUpdateInput
+}
+
+input PageCreateInput {
+  title: String
+  slug: String
+  state: String
+  template: String
+  lang: LangRelateToManyInput
+  heroblock: HeroBlockRelateToOneInput
+  contactBannerBlock: BannertypeRelateToOneInput
+  secondaryBannerBlock: BannertypeRelateToOneInput
+}
+
+input PageUpdateInput {
+  title: String
+  slug: String
+  state: String
+  template: String
+  lang: LangRelateToManyInput
+  heroblock: HeroBlockRelateToOneInput
+  contactBannerBlock: BannertypeRelateToOneInput
+  secondaryBannerBlock: BannertypeRelateToOneInput
+}
+
+input PageWhereInput {
+  AND: [PageWhereInput]
+  OR: [PageWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  slug: String
+  slug_not: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  slug_i: String
+  slug_not_i: String
+  slug_contains_i: String
+  slug_not_contains_i: String
+  slug_starts_with_i: String
+  slug_not_starts_with_i: String
+  slug_ends_with_i: String
+  slug_not_ends_with_i: String
+  slug_in: [String]
+  slug_not_in: [String]
+  state: String
+  state_not: String
+  state_in: [String]
+  state_not_in: [String]
+  template: String
+  template_not: String
+  template_in: [String]
+  template_not_in: [String]
+  """condition must be true for all nodes"""
+  lang_every: LangWhereInput
+  """condition must be true for at least 1 node"""
+  lang_some: LangWhereInput
+  """condition must be false for all nodes"""
+  lang_none: LangWhereInput
+  """is the relation field null"""
+  lang_is_null: Boolean
+  heroblock: HeroBlockWhereInput
+  heroblock_is_null: Boolean
+  contactBannerBlock: BannertypeWhereInput
+  contactBannerBlock_is_null: Boolean
+  secondaryBannerBlock: BannertypeWhereInput
+  secondaryBannerBlock_is_null: Boolean
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input PageWhereUniqueInput {
+  id: ID!
+}
+
+input PagesCreateInput {
+  data: PageCreateInput
+}
+
+input PagesUpdateInput {
+  id: ID!
+  data: PageUpdateInput
+}
+
+input PressReleaseCreateInput {
+  title: String
+  slug: String
+  state: String
+  lang: LangRelateToManyInput
+  subTitle: String
+  shortDescription: String
+  description: String
+  date: String
+  mediaContactname: String
+  mediaContactPhone: String
+}
+
+input PressReleaseUpdateInput {
+  title: String
+  slug: String
+  state: String
+  lang: LangRelateToManyInput
+  subTitle: String
+  shortDescription: String
+  description: String
+  date: String
+  mediaContactname: String
+  mediaContactPhone: String
+}
+
+input PressReleaseWhereInput {
+  AND: [PressReleaseWhereInput]
+  OR: [PressReleaseWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  slug: String
+  slug_not: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  slug_i: String
+  slug_not_i: String
+  slug_contains_i: String
+  slug_not_contains_i: String
+  slug_starts_with_i: String
+  slug_not_starts_with_i: String
+  slug_ends_with_i: String
+  slug_not_ends_with_i: String
+  slug_in: [String]
+  slug_not_in: [String]
+  state: String
+  state_not: String
+  state_in: [String]
+  state_not_in: [String]
+  """condition must be true for all nodes"""
+  lang_every: LangWhereInput
+  """condition must be true for at least 1 node"""
+  lang_some: LangWhereInput
+  """condition must be false for all nodes"""
+  lang_none: LangWhereInput
+  """is the relation field null"""
+  lang_is_null: Boolean
+  subTitle: String
+  subTitle_not: String
+  subTitle_contains: String
+  subTitle_not_contains: String
+  subTitle_starts_with: String
+  subTitle_not_starts_with: String
+  subTitle_ends_with: String
+  subTitle_not_ends_with: String
+  subTitle_i: String
+  subTitle_not_i: String
+  subTitle_contains_i: String
+  subTitle_not_contains_i: String
+  subTitle_starts_with_i: String
+  subTitle_not_starts_with_i: String
+  subTitle_ends_with_i: String
+  subTitle_not_ends_with_i: String
+  subTitle_in: [String]
+  subTitle_not_in: [String]
+  shortDescription: String
+  shortDescription_not: String
+  shortDescription_contains: String
+  shortDescription_not_contains: String
+  shortDescription_starts_with: String
+  shortDescription_not_starts_with: String
+  shortDescription_ends_with: String
+  shortDescription_not_ends_with: String
+  shortDescription_i: String
+  shortDescription_not_i: String
+  shortDescription_contains_i: String
+  shortDescription_not_contains_i: String
+  shortDescription_starts_with_i: String
+  shortDescription_not_starts_with_i: String
+  shortDescription_ends_with_i: String
+  shortDescription_not_ends_with_i: String
+  shortDescription_in: [String]
+  shortDescription_not_in: [String]
+  description: String
+  description_not: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  description_i: String
+  description_not_i: String
+  description_contains_i: String
+  description_not_contains_i: String
+  description_starts_with_i: String
+  description_not_starts_with_i: String
+  description_ends_with_i: String
+  description_not_ends_with_i: String
+  description_in: [String]
+  description_not_in: [String]
+  date: String
+  date_not: String
+  date_lt: String
+  date_lte: String
+  date_gt: String
+  date_gte: String
+  date_in: [String]
+  date_not_in: [String]
+  mediaContactname: String
+  mediaContactname_not: String
+  mediaContactname_contains: String
+  mediaContactname_not_contains: String
+  mediaContactname_starts_with: String
+  mediaContactname_not_starts_with: String
+  mediaContactname_ends_with: String
+  mediaContactname_not_ends_with: String
+  mediaContactname_i: String
+  mediaContactname_not_i: String
+  mediaContactname_contains_i: String
+  mediaContactname_not_contains_i: String
+  mediaContactname_starts_with_i: String
+  mediaContactname_not_starts_with_i: String
+  mediaContactname_ends_with_i: String
+  mediaContactname_not_ends_with_i: String
+  mediaContactname_in: [String]
+  mediaContactname_not_in: [String]
+  mediaContactPhone: String
+  mediaContactPhone_not: String
+  mediaContactPhone_contains: String
+  mediaContactPhone_not_contains: String
+  mediaContactPhone_starts_with: String
+  mediaContactPhone_not_starts_with: String
+  mediaContactPhone_ends_with: String
+  mediaContactPhone_not_ends_with: String
+  mediaContactPhone_i: String
+  mediaContactPhone_not_i: String
+  mediaContactPhone_contains_i: String
+  mediaContactPhone_not_contains_i: String
+  mediaContactPhone_starts_with_i: String
+  mediaContactPhone_not_starts_with_i: String
+  mediaContactPhone_ends_with_i: String
+  mediaContactPhone_not_ends_with_i: String
+  mediaContactPhone_in: [String]
+  mediaContactPhone_not_in: [String]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input PressReleaseWhereUniqueInput {
+  id: ID!
+}
+
+input PressReleasesCreateInput {
+  data: PressReleaseCreateInput
+}
+
+input PressReleasesUpdateInput {
+  id: ID!
+  data: PressReleaseUpdateInput
+}
+
+input ProductCreateInput {
+  title: String
+  slug: String
+  state: String
+  lang: LangRelateToManyInput
+  logo: Upload
+  logoBlack: Upload
+  registro: String
+  image: Upload
+  excerpt: String
+  content: String
+  introPage: String
+  subtitle: String
+  video: VimeoRelateToOneInput
+  download: MultimediaRelateToManyInput
+  heroblock: HeroBlockRelateToOneInput
+  bullet1: String
+  bulletDescription1: String
+  iconSection1: Upload
+  tooltipSection1: String
+  bullet2: String
+  bulletDescription2: String
+  iconSection2: Upload
+  tooltipSection2: String
+  bullet3: String
+  bulletDescription3: String
+  iconSection3: Upload
+  tooltipSection3: String
+  bullet4: String
+  bulletDescription4: String
+  iconSection4: Upload
+  tooltipSection4: String
+  bullet5: String
+  bulletDescription5: String
+  iconSection5: Upload
+  tooltipSection5: String
+  bullet6: String
+  bulletDescription6: String
+  iconSection6: Upload
+  tooltipSection6: String
+  contactBannerBlock: BannertypeRelateToOneInput
+  titleSectionVideo1: String
+  textSectionVideo1: String
+  textSectionVideo2: String
+  titleSectionVideo3: String
+  textSectionVideo3: String
+  titleSectionVideo4: String
+  textSectionVideo4: String
+  faq: FaqRelateToManyInput
+  article: ArticleRelateToManyInput
+}
+
+input ProductUpdateInput {
+  title: String
+  slug: String
+  state: String
+  lang: LangRelateToManyInput
+  logo: Upload
+  logoBlack: Upload
+  registro: String
+  image: Upload
+  excerpt: String
+  content: String
+  introPage: String
+  subtitle: String
+  video: VimeoRelateToOneInput
+  download: MultimediaRelateToManyInput
+  heroblock: HeroBlockRelateToOneInput
+  bullet1: String
+  bulletDescription1: String
+  iconSection1: Upload
+  tooltipSection1: String
+  bullet2: String
+  bulletDescription2: String
+  iconSection2: Upload
+  tooltipSection2: String
+  bullet3: String
+  bulletDescription3: String
+  iconSection3: Upload
+  tooltipSection3: String
+  bullet4: String
+  bulletDescription4: String
+  iconSection4: Upload
+  tooltipSection4: String
+  bullet5: String
+  bulletDescription5: String
+  iconSection5: Upload
+  tooltipSection5: String
+  bullet6: String
+  bulletDescription6: String
+  iconSection6: Upload
+  tooltipSection6: String
+  contactBannerBlock: BannertypeRelateToOneInput
+  titleSectionVideo1: String
+  textSectionVideo1: String
+  textSectionVideo2: String
+  titleSectionVideo3: String
+  textSectionVideo3: String
+  titleSectionVideo4: String
+  textSectionVideo4: String
+  faq: FaqRelateToManyInput
+  article: ArticleRelateToManyInput
+}
+
+input ProductWhereInput {
+  AND: [ProductWhereInput]
+  OR: [ProductWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  slug: String
+  slug_not: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  slug_i: String
+  slug_not_i: String
+  slug_contains_i: String
+  slug_not_contains_i: String
+  slug_starts_with_i: String
+  slug_not_starts_with_i: String
+  slug_ends_with_i: String
+  slug_not_ends_with_i: String
+  slug_in: [String]
+  slug_not_in: [String]
+  state: String
+  state_not: String
+  state_in: [String]
+  state_not_in: [String]
+  """condition must be true for all nodes"""
+  lang_every: LangWhereInput
+  """condition must be true for at least 1 node"""
+  lang_some: LangWhereInput
+  """condition must be false for all nodes"""
+  lang_none: LangWhereInput
+  """is the relation field null"""
+  lang_is_null: Boolean
+  logo: String
+  logo_not: String
+  logo_contains: String
+  logo_not_contains: String
+  logo_starts_with: String
+  logo_not_starts_with: String
+  logo_ends_with: String
+  logo_not_ends_with: String
+  logo_in: [String]
+  logo_not_in: [String]
+  logoBlack: String
+  logoBlack_not: String
+  logoBlack_contains: String
+  logoBlack_not_contains: String
+  logoBlack_starts_with: String
+  logoBlack_not_starts_with: String
+  logoBlack_ends_with: String
+  logoBlack_not_ends_with: String
+  logoBlack_in: [String]
+  logoBlack_not_in: [String]
+  registro: String
+  registro_not: String
+  registro_contains: String
+  registro_not_contains: String
+  registro_starts_with: String
+  registro_not_starts_with: String
+  registro_ends_with: String
+  registro_not_ends_with: String
+  registro_i: String
+  registro_not_i: String
+  registro_contains_i: String
+  registro_not_contains_i: String
+  registro_starts_with_i: String
+  registro_not_starts_with_i: String
+  registro_ends_with_i: String
+  registro_not_ends_with_i: String
+  registro_in: [String]
+  registro_not_in: [String]
+  image: String
+  image_not: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  image_in: [String]
+  image_not_in: [String]
+  excerpt: String
+  excerpt_not: String
+  excerpt_contains: String
+  excerpt_not_contains: String
+  excerpt_starts_with: String
+  excerpt_not_starts_with: String
+  excerpt_ends_with: String
+  excerpt_not_ends_with: String
+  excerpt_i: String
+  excerpt_not_i: String
+  excerpt_contains_i: String
+  excerpt_not_contains_i: String
+  excerpt_starts_with_i: String
+  excerpt_not_starts_with_i: String
+  excerpt_ends_with_i: String
+  excerpt_not_ends_with_i: String
+  excerpt_in: [String]
+  excerpt_not_in: [String]
+  content: String
+  content_not: String
+  content_contains: String
+  content_not_contains: String
+  content_starts_with: String
+  content_not_starts_with: String
+  content_ends_with: String
+  content_not_ends_with: String
+  content_i: String
+  content_not_i: String
+  content_contains_i: String
+  content_not_contains_i: String
+  content_starts_with_i: String
+  content_not_starts_with_i: String
+  content_ends_with_i: String
+  content_not_ends_with_i: String
+  content_in: [String]
+  content_not_in: [String]
+  introPage: String
+  introPage_not: String
+  introPage_contains: String
+  introPage_not_contains: String
+  introPage_starts_with: String
+  introPage_not_starts_with: String
+  introPage_ends_with: String
+  introPage_not_ends_with: String
+  introPage_i: String
+  introPage_not_i: String
+  introPage_contains_i: String
+  introPage_not_contains_i: String
+  introPage_starts_with_i: String
+  introPage_not_starts_with_i: String
+  introPage_ends_with_i: String
+  introPage_not_ends_with_i: String
+  introPage_in: [String]
+  introPage_not_in: [String]
+  subtitle: String
+  subtitle_not: String
+  subtitle_contains: String
+  subtitle_not_contains: String
+  subtitle_starts_with: String
+  subtitle_not_starts_with: String
+  subtitle_ends_with: String
+  subtitle_not_ends_with: String
+  subtitle_i: String
+  subtitle_not_i: String
+  subtitle_contains_i: String
+  subtitle_not_contains_i: String
+  subtitle_starts_with_i: String
+  subtitle_not_starts_with_i: String
+  subtitle_ends_with_i: String
+  subtitle_not_ends_with_i: String
+  subtitle_in: [String]
+  subtitle_not_in: [String]
+  video: VimeoWhereInput
+  video_is_null: Boolean
+  """condition must be true for all nodes"""
+  download_every: MultimediaWhereInput
+  """condition must be true for at least 1 node"""
+  download_some: MultimediaWhereInput
+  """condition must be false for all nodes"""
+  download_none: MultimediaWhereInput
+  """is the relation field null"""
+  download_is_null: Boolean
+  heroblock: HeroBlockWhereInput
+  heroblock_is_null: Boolean
+  bullet1: String
+  bullet1_not: String
+  bullet1_contains: String
+  bullet1_not_contains: String
+  bullet1_starts_with: String
+  bullet1_not_starts_with: String
+  bullet1_ends_with: String
+  bullet1_not_ends_with: String
+  bullet1_i: String
+  bullet1_not_i: String
+  bullet1_contains_i: String
+  bullet1_not_contains_i: String
+  bullet1_starts_with_i: String
+  bullet1_not_starts_with_i: String
+  bullet1_ends_with_i: String
+  bullet1_not_ends_with_i: String
+  bullet1_in: [String]
+  bullet1_not_in: [String]
+  bulletDescription1: String
+  bulletDescription1_not: String
+  bulletDescription1_contains: String
+  bulletDescription1_not_contains: String
+  bulletDescription1_starts_with: String
+  bulletDescription1_not_starts_with: String
+  bulletDescription1_ends_with: String
+  bulletDescription1_not_ends_with: String
+  bulletDescription1_i: String
+  bulletDescription1_not_i: String
+  bulletDescription1_contains_i: String
+  bulletDescription1_not_contains_i: String
+  bulletDescription1_starts_with_i: String
+  bulletDescription1_not_starts_with_i: String
+  bulletDescription1_ends_with_i: String
+  bulletDescription1_not_ends_with_i: String
+  bulletDescription1_in: [String]
+  bulletDescription1_not_in: [String]
+  iconSection1: String
+  iconSection1_not: String
+  iconSection1_contains: String
+  iconSection1_not_contains: String
+  iconSection1_starts_with: String
+  iconSection1_not_starts_with: String
+  iconSection1_ends_with: String
+  iconSection1_not_ends_with: String
+  iconSection1_in: [String]
+  iconSection1_not_in: [String]
+  tooltipSection1: String
+  tooltipSection1_not: String
+  tooltipSection1_contains: String
+  tooltipSection1_not_contains: String
+  tooltipSection1_starts_with: String
+  tooltipSection1_not_starts_with: String
+  tooltipSection1_ends_with: String
+  tooltipSection1_not_ends_with: String
+  tooltipSection1_i: String
+  tooltipSection1_not_i: String
+  tooltipSection1_contains_i: String
+  tooltipSection1_not_contains_i: String
+  tooltipSection1_starts_with_i: String
+  tooltipSection1_not_starts_with_i: String
+  tooltipSection1_ends_with_i: String
+  tooltipSection1_not_ends_with_i: String
+  tooltipSection1_in: [String]
+  tooltipSection1_not_in: [String]
+  bullet2: String
+  bullet2_not: String
+  bullet2_contains: String
+  bullet2_not_contains: String
+  bullet2_starts_with: String
+  bullet2_not_starts_with: String
+  bullet2_ends_with: String
+  bullet2_not_ends_with: String
+  bullet2_i: String
+  bullet2_not_i: String
+  bullet2_contains_i: String
+  bullet2_not_contains_i: String
+  bullet2_starts_with_i: String
+  bullet2_not_starts_with_i: String
+  bullet2_ends_with_i: String
+  bullet2_not_ends_with_i: String
+  bullet2_in: [String]
+  bullet2_not_in: [String]
+  bulletDescription2: String
+  bulletDescription2_not: String
+  bulletDescription2_contains: String
+  bulletDescription2_not_contains: String
+  bulletDescription2_starts_with: String
+  bulletDescription2_not_starts_with: String
+  bulletDescription2_ends_with: String
+  bulletDescription2_not_ends_with: String
+  bulletDescription2_i: String
+  bulletDescription2_not_i: String
+  bulletDescription2_contains_i: String
+  bulletDescription2_not_contains_i: String
+  bulletDescription2_starts_with_i: String
+  bulletDescription2_not_starts_with_i: String
+  bulletDescription2_ends_with_i: String
+  bulletDescription2_not_ends_with_i: String
+  bulletDescription2_in: [String]
+  bulletDescription2_not_in: [String]
+  iconSection2: String
+  iconSection2_not: String
+  iconSection2_contains: String
+  iconSection2_not_contains: String
+  iconSection2_starts_with: String
+  iconSection2_not_starts_with: String
+  iconSection2_ends_with: String
+  iconSection2_not_ends_with: String
+  iconSection2_in: [String]
+  iconSection2_not_in: [String]
+  tooltipSection2: String
+  tooltipSection2_not: String
+  tooltipSection2_contains: String
+  tooltipSection2_not_contains: String
+  tooltipSection2_starts_with: String
+  tooltipSection2_not_starts_with: String
+  tooltipSection2_ends_with: String
+  tooltipSection2_not_ends_with: String
+  tooltipSection2_i: String
+  tooltipSection2_not_i: String
+  tooltipSection2_contains_i: String
+  tooltipSection2_not_contains_i: String
+  tooltipSection2_starts_with_i: String
+  tooltipSection2_not_starts_with_i: String
+  tooltipSection2_ends_with_i: String
+  tooltipSection2_not_ends_with_i: String
+  tooltipSection2_in: [String]
+  tooltipSection2_not_in: [String]
+  bullet3: String
+  bullet3_not: String
+  bullet3_contains: String
+  bullet3_not_contains: String
+  bullet3_starts_with: String
+  bullet3_not_starts_with: String
+  bullet3_ends_with: String
+  bullet3_not_ends_with: String
+  bullet3_i: String
+  bullet3_not_i: String
+  bullet3_contains_i: String
+  bullet3_not_contains_i: String
+  bullet3_starts_with_i: String
+  bullet3_not_starts_with_i: String
+  bullet3_ends_with_i: String
+  bullet3_not_ends_with_i: String
+  bullet3_in: [String]
+  bullet3_not_in: [String]
+  bulletDescription3: String
+  bulletDescription3_not: String
+  bulletDescription3_contains: String
+  bulletDescription3_not_contains: String
+  bulletDescription3_starts_with: String
+  bulletDescription3_not_starts_with: String
+  bulletDescription3_ends_with: String
+  bulletDescription3_not_ends_with: String
+  bulletDescription3_i: String
+  bulletDescription3_not_i: String
+  bulletDescription3_contains_i: String
+  bulletDescription3_not_contains_i: String
+  bulletDescription3_starts_with_i: String
+  bulletDescription3_not_starts_with_i: String
+  bulletDescription3_ends_with_i: String
+  bulletDescription3_not_ends_with_i: String
+  bulletDescription3_in: [String]
+  bulletDescription3_not_in: [String]
+  iconSection3: String
+  iconSection3_not: String
+  iconSection3_contains: String
+  iconSection3_not_contains: String
+  iconSection3_starts_with: String
+  iconSection3_not_starts_with: String
+  iconSection3_ends_with: String
+  iconSection3_not_ends_with: String
+  iconSection3_in: [String]
+  iconSection3_not_in: [String]
+  tooltipSection3: String
+  tooltipSection3_not: String
+  tooltipSection3_contains: String
+  tooltipSection3_not_contains: String
+  tooltipSection3_starts_with: String
+  tooltipSection3_not_starts_with: String
+  tooltipSection3_ends_with: String
+  tooltipSection3_not_ends_with: String
+  tooltipSection3_i: String
+  tooltipSection3_not_i: String
+  tooltipSection3_contains_i: String
+  tooltipSection3_not_contains_i: String
+  tooltipSection3_starts_with_i: String
+  tooltipSection3_not_starts_with_i: String
+  tooltipSection3_ends_with_i: String
+  tooltipSection3_not_ends_with_i: String
+  tooltipSection3_in: [String]
+  tooltipSection3_not_in: [String]
+  bullet4: String
+  bullet4_not: String
+  bullet4_contains: String
+  bullet4_not_contains: String
+  bullet4_starts_with: String
+  bullet4_not_starts_with: String
+  bullet4_ends_with: String
+  bullet4_not_ends_with: String
+  bullet4_i: String
+  bullet4_not_i: String
+  bullet4_contains_i: String
+  bullet4_not_contains_i: String
+  bullet4_starts_with_i: String
+  bullet4_not_starts_with_i: String
+  bullet4_ends_with_i: String
+  bullet4_not_ends_with_i: String
+  bullet4_in: [String]
+  bullet4_not_in: [String]
+  bulletDescription4: String
+  bulletDescription4_not: String
+  bulletDescription4_contains: String
+  bulletDescription4_not_contains: String
+  bulletDescription4_starts_with: String
+  bulletDescription4_not_starts_with: String
+  bulletDescription4_ends_with: String
+  bulletDescription4_not_ends_with: String
+  bulletDescription4_i: String
+  bulletDescription4_not_i: String
+  bulletDescription4_contains_i: String
+  bulletDescription4_not_contains_i: String
+  bulletDescription4_starts_with_i: String
+  bulletDescription4_not_starts_with_i: String
+  bulletDescription4_ends_with_i: String
+  bulletDescription4_not_ends_with_i: String
+  bulletDescription4_in: [String]
+  bulletDescription4_not_in: [String]
+  iconSection4: String
+  iconSection4_not: String
+  iconSection4_contains: String
+  iconSection4_not_contains: String
+  iconSection4_starts_with: String
+  iconSection4_not_starts_with: String
+  iconSection4_ends_with: String
+  iconSection4_not_ends_with: String
+  iconSection4_in: [String]
+  iconSection4_not_in: [String]
+  tooltipSection4: String
+  tooltipSection4_not: String
+  tooltipSection4_contains: String
+  tooltipSection4_not_contains: String
+  tooltipSection4_starts_with: String
+  tooltipSection4_not_starts_with: String
+  tooltipSection4_ends_with: String
+  tooltipSection4_not_ends_with: String
+  tooltipSection4_i: String
+  tooltipSection4_not_i: String
+  tooltipSection4_contains_i: String
+  tooltipSection4_not_contains_i: String
+  tooltipSection4_starts_with_i: String
+  tooltipSection4_not_starts_with_i: String
+  tooltipSection4_ends_with_i: String
+  tooltipSection4_not_ends_with_i: String
+  tooltipSection4_in: [String]
+  tooltipSection4_not_in: [String]
+  bullet5: String
+  bullet5_not: String
+  bullet5_contains: String
+  bullet5_not_contains: String
+  bullet5_starts_with: String
+  bullet5_not_starts_with: String
+  bullet5_ends_with: String
+  bullet5_not_ends_with: String
+  bullet5_i: String
+  bullet5_not_i: String
+  bullet5_contains_i: String
+  bullet5_not_contains_i: String
+  bullet5_starts_with_i: String
+  bullet5_not_starts_with_i: String
+  bullet5_ends_with_i: String
+  bullet5_not_ends_with_i: String
+  bullet5_in: [String]
+  bullet5_not_in: [String]
+  bulletDescription5: String
+  bulletDescription5_not: String
+  bulletDescription5_contains: String
+  bulletDescription5_not_contains: String
+  bulletDescription5_starts_with: String
+  bulletDescription5_not_starts_with: String
+  bulletDescription5_ends_with: String
+  bulletDescription5_not_ends_with: String
+  bulletDescription5_i: String
+  bulletDescription5_not_i: String
+  bulletDescription5_contains_i: String
+  bulletDescription5_not_contains_i: String
+  bulletDescription5_starts_with_i: String
+  bulletDescription5_not_starts_with_i: String
+  bulletDescription5_ends_with_i: String
+  bulletDescription5_not_ends_with_i: String
+  bulletDescription5_in: [String]
+  bulletDescription5_not_in: [String]
+  iconSection5: String
+  iconSection5_not: String
+  iconSection5_contains: String
+  iconSection5_not_contains: String
+  iconSection5_starts_with: String
+  iconSection5_not_starts_with: String
+  iconSection5_ends_with: String
+  iconSection5_not_ends_with: String
+  iconSection5_in: [String]
+  iconSection5_not_in: [String]
+  tooltipSection5: String
+  tooltipSection5_not: String
+  tooltipSection5_contains: String
+  tooltipSection5_not_contains: String
+  tooltipSection5_starts_with: String
+  tooltipSection5_not_starts_with: String
+  tooltipSection5_ends_with: String
+  tooltipSection5_not_ends_with: String
+  tooltipSection5_i: String
+  tooltipSection5_not_i: String
+  tooltipSection5_contains_i: String
+  tooltipSection5_not_contains_i: String
+  tooltipSection5_starts_with_i: String
+  tooltipSection5_not_starts_with_i: String
+  tooltipSection5_ends_with_i: String
+  tooltipSection5_not_ends_with_i: String
+  tooltipSection5_in: [String]
+  tooltipSection5_not_in: [String]
+  bullet6: String
+  bullet6_not: String
+  bullet6_contains: String
+  bullet6_not_contains: String
+  bullet6_starts_with: String
+  bullet6_not_starts_with: String
+  bullet6_ends_with: String
+  bullet6_not_ends_with: String
+  bullet6_i: String
+  bullet6_not_i: String
+  bullet6_contains_i: String
+  bullet6_not_contains_i: String
+  bullet6_starts_with_i: String
+  bullet6_not_starts_with_i: String
+  bullet6_ends_with_i: String
+  bullet6_not_ends_with_i: String
+  bullet6_in: [String]
+  bullet6_not_in: [String]
+  bulletDescription6: String
+  bulletDescription6_not: String
+  bulletDescription6_contains: String
+  bulletDescription6_not_contains: String
+  bulletDescription6_starts_with: String
+  bulletDescription6_not_starts_with: String
+  bulletDescription6_ends_with: String
+  bulletDescription6_not_ends_with: String
+  bulletDescription6_i: String
+  bulletDescription6_not_i: String
+  bulletDescription6_contains_i: String
+  bulletDescription6_not_contains_i: String
+  bulletDescription6_starts_with_i: String
+  bulletDescription6_not_starts_with_i: String
+  bulletDescription6_ends_with_i: String
+  bulletDescription6_not_ends_with_i: String
+  bulletDescription6_in: [String]
+  bulletDescription6_not_in: [String]
+  iconSection6: String
+  iconSection6_not: String
+  iconSection6_contains: String
+  iconSection6_not_contains: String
+  iconSection6_starts_with: String
+  iconSection6_not_starts_with: String
+  iconSection6_ends_with: String
+  iconSection6_not_ends_with: String
+  iconSection6_in: [String]
+  iconSection6_not_in: [String]
+  tooltipSection6: String
+  tooltipSection6_not: String
+  tooltipSection6_contains: String
+  tooltipSection6_not_contains: String
+  tooltipSection6_starts_with: String
+  tooltipSection6_not_starts_with: String
+  tooltipSection6_ends_with: String
+  tooltipSection6_not_ends_with: String
+  tooltipSection6_i: String
+  tooltipSection6_not_i: String
+  tooltipSection6_contains_i: String
+  tooltipSection6_not_contains_i: String
+  tooltipSection6_starts_with_i: String
+  tooltipSection6_not_starts_with_i: String
+  tooltipSection6_ends_with_i: String
+  tooltipSection6_not_ends_with_i: String
+  tooltipSection6_in: [String]
+  tooltipSection6_not_in: [String]
+  contactBannerBlock: BannertypeWhereInput
+  contactBannerBlock_is_null: Boolean
+  titleSectionVideo1: String
+  titleSectionVideo1_not: String
+  titleSectionVideo1_contains: String
+  titleSectionVideo1_not_contains: String
+  titleSectionVideo1_starts_with: String
+  titleSectionVideo1_not_starts_with: String
+  titleSectionVideo1_ends_with: String
+  titleSectionVideo1_not_ends_with: String
+  titleSectionVideo1_i: String
+  titleSectionVideo1_not_i: String
+  titleSectionVideo1_contains_i: String
+  titleSectionVideo1_not_contains_i: String
+  titleSectionVideo1_starts_with_i: String
+  titleSectionVideo1_not_starts_with_i: String
+  titleSectionVideo1_ends_with_i: String
+  titleSectionVideo1_not_ends_with_i: String
+  titleSectionVideo1_in: [String]
+  titleSectionVideo1_not_in: [String]
+  textSectionVideo1: String
+  textSectionVideo1_not: String
+  textSectionVideo1_contains: String
+  textSectionVideo1_not_contains: String
+  textSectionVideo1_starts_with: String
+  textSectionVideo1_not_starts_with: String
+  textSectionVideo1_ends_with: String
+  textSectionVideo1_not_ends_with: String
+  textSectionVideo1_i: String
+  textSectionVideo1_not_i: String
+  textSectionVideo1_contains_i: String
+  textSectionVideo1_not_contains_i: String
+  textSectionVideo1_starts_with_i: String
+  textSectionVideo1_not_starts_with_i: String
+  textSectionVideo1_ends_with_i: String
+  textSectionVideo1_not_ends_with_i: String
+  textSectionVideo1_in: [String]
+  textSectionVideo1_not_in: [String]
+  textSectionVideo2: String
+  textSectionVideo2_not: String
+  textSectionVideo2_contains: String
+  textSectionVideo2_not_contains: String
+  textSectionVideo2_starts_with: String
+  textSectionVideo2_not_starts_with: String
+  textSectionVideo2_ends_with: String
+  textSectionVideo2_not_ends_with: String
+  textSectionVideo2_i: String
+  textSectionVideo2_not_i: String
+  textSectionVideo2_contains_i: String
+  textSectionVideo2_not_contains_i: String
+  textSectionVideo2_starts_with_i: String
+  textSectionVideo2_not_starts_with_i: String
+  textSectionVideo2_ends_with_i: String
+  textSectionVideo2_not_ends_with_i: String
+  textSectionVideo2_in: [String]
+  textSectionVideo2_not_in: [String]
+  titleSectionVideo3: String
+  titleSectionVideo3_not: String
+  titleSectionVideo3_contains: String
+  titleSectionVideo3_not_contains: String
+  titleSectionVideo3_starts_with: String
+  titleSectionVideo3_not_starts_with: String
+  titleSectionVideo3_ends_with: String
+  titleSectionVideo3_not_ends_with: String
+  titleSectionVideo3_i: String
+  titleSectionVideo3_not_i: String
+  titleSectionVideo3_contains_i: String
+  titleSectionVideo3_not_contains_i: String
+  titleSectionVideo3_starts_with_i: String
+  titleSectionVideo3_not_starts_with_i: String
+  titleSectionVideo3_ends_with_i: String
+  titleSectionVideo3_not_ends_with_i: String
+  titleSectionVideo3_in: [String]
+  titleSectionVideo3_not_in: [String]
+  textSectionVideo3: String
+  textSectionVideo3_not: String
+  textSectionVideo3_contains: String
+  textSectionVideo3_not_contains: String
+  textSectionVideo3_starts_with: String
+  textSectionVideo3_not_starts_with: String
+  textSectionVideo3_ends_with: String
+  textSectionVideo3_not_ends_with: String
+  textSectionVideo3_i: String
+  textSectionVideo3_not_i: String
+  textSectionVideo3_contains_i: String
+  textSectionVideo3_not_contains_i: String
+  textSectionVideo3_starts_with_i: String
+  textSectionVideo3_not_starts_with_i: String
+  textSectionVideo3_ends_with_i: String
+  textSectionVideo3_not_ends_with_i: String
+  textSectionVideo3_in: [String]
+  textSectionVideo3_not_in: [String]
+  titleSectionVideo4: String
+  titleSectionVideo4_not: String
+  titleSectionVideo4_contains: String
+  titleSectionVideo4_not_contains: String
+  titleSectionVideo4_starts_with: String
+  titleSectionVideo4_not_starts_with: String
+  titleSectionVideo4_ends_with: String
+  titleSectionVideo4_not_ends_with: String
+  titleSectionVideo4_i: String
+  titleSectionVideo4_not_i: String
+  titleSectionVideo4_contains_i: String
+  titleSectionVideo4_not_contains_i: String
+  titleSectionVideo4_starts_with_i: String
+  titleSectionVideo4_not_starts_with_i: String
+  titleSectionVideo4_ends_with_i: String
+  titleSectionVideo4_not_ends_with_i: String
+  titleSectionVideo4_in: [String]
+  titleSectionVideo4_not_in: [String]
+  textSectionVideo4: String
+  textSectionVideo4_not: String
+  textSectionVideo4_contains: String
+  textSectionVideo4_not_contains: String
+  textSectionVideo4_starts_with: String
+  textSectionVideo4_not_starts_with: String
+  textSectionVideo4_ends_with: String
+  textSectionVideo4_not_ends_with: String
+  textSectionVideo4_i: String
+  textSectionVideo4_not_i: String
+  textSectionVideo4_contains_i: String
+  textSectionVideo4_not_contains_i: String
+  textSectionVideo4_starts_with_i: String
+  textSectionVideo4_not_starts_with_i: String
+  textSectionVideo4_ends_with_i: String
+  textSectionVideo4_not_ends_with_i: String
+  textSectionVideo4_in: [String]
+  textSectionVideo4_not_in: [String]
+  """condition must be true for all nodes"""
+  faq_every: FaqWhereInput
+  """condition must be true for at least 1 node"""
+  faq_some: FaqWhereInput
+  """condition must be false for all nodes"""
+  faq_none: FaqWhereInput
+  """is the relation field null"""
+  faq_is_null: Boolean
+  """condition must be true for all nodes"""
+  article_every: ArticleWhereInput
+  """condition must be true for at least 1 node"""
+  article_some: ArticleWhereInput
+  """condition must be false for all nodes"""
+  article_none: ArticleWhereInput
+  """is the relation field null"""
+  article_is_null: Boolean
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input ProductWhereUniqueInput {
+  id: ID!
+}
+
+input ProductsCreateInput {
+  data: ProductCreateInput
+}
+
+input ProductsUpdateInput {
+  id: ID!
+  data: ProductUpdateInput
+}
+
+input PurposeCreateInput {
+  title: String
+  icon: Upload
+}
+
+input PurposeRelateToManyInput {
+  create: [PurposeCreateInput]
+  connect: [PurposeWhereUniqueInput]
+  disconnect: [PurposeWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input PurposeUpdateInput {
+  title: String
+  icon: Upload
+}
+
+input PurposeWhereInput {
+  AND: [PurposeWhereInput]
+  OR: [PurposeWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  icon: String
+  icon_not: String
+  icon_contains: String
+  icon_not_contains: String
+  icon_starts_with: String
+  icon_not_starts_with: String
+  icon_ends_with: String
+  icon_not_ends_with: String
+  icon_in: [String]
+  icon_not_in: [String]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input PurposeWhereUniqueInput {
+  id: ID!
+}
+
+input PurposesCreateInput {
+  data: PurposeCreateInput
+}
+
+input PurposesUpdateInput {
+  id: ID!
+  data: PurposeUpdateInput
+}
+
+input TeamMemberCountriesCreateInput {
+  data: TeamMemberCountryCreateInput
+}
+
+input TeamMemberCountriesUpdateInput {
+  id: ID!
+  data: TeamMemberCountryUpdateInput
+}
+
+input TeamMemberCountryCreateInput {
+  title: String
+  titleEs: String
+  titlePor: String
+  name: String
+}
+
+input TeamMemberCountryRelateToOneInput {
+  create: TeamMemberCountryCreateInput
+  connect: TeamMemberCountryWhereUniqueInput
+  disconnect: TeamMemberCountryWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input TeamMemberCountryUpdateInput {
+  title: String
+  titleEs: String
+  titlePor: String
+  name: String
+}
+
+input TeamMemberCountryWhereInput {
+  AND: [TeamMemberCountryWhereInput]
+  OR: [TeamMemberCountryWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  titleEs: String
+  titleEs_not: String
+  titleEs_contains: String
+  titleEs_not_contains: String
+  titleEs_starts_with: String
+  titleEs_not_starts_with: String
+  titleEs_ends_with: String
+  titleEs_not_ends_with: String
+  titleEs_i: String
+  titleEs_not_i: String
+  titleEs_contains_i: String
+  titleEs_not_contains_i: String
+  titleEs_starts_with_i: String
+  titleEs_not_starts_with_i: String
+  titleEs_ends_with_i: String
+  titleEs_not_ends_with_i: String
+  titleEs_in: [String]
+  titleEs_not_in: [String]
+  titlePor: String
+  titlePor_not: String
+  titlePor_contains: String
+  titlePor_not_contains: String
+  titlePor_starts_with: String
+  titlePor_not_starts_with: String
+  titlePor_ends_with: String
+  titlePor_not_ends_with: String
+  titlePor_i: String
+  titlePor_not_i: String
+  titlePor_contains_i: String
+  titlePor_not_contains_i: String
+  titlePor_starts_with_i: String
+  titlePor_not_starts_with_i: String
+  titlePor_ends_with_i: String
+  titlePor_not_ends_with_i: String
+  titlePor_in: [String]
+  titlePor_not_in: [String]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input TeamMemberCountryWhereUniqueInput {
+  id: ID!
+}
+
+input TeamMemberCreateInput {
+  firstName: String
+  lastName: String
+  state: String
+  lang: LangRelateToManyInput
+  isFounder: Boolean
+  position: TeamMemberPositionRelateToOneInput
+  department: DepartmentRelateToOneInput
+  degree: String
+  about: String
+  teamMemberCountry: TeamMemberCountryRelateToOneInput
+  city: String
+  picture: Upload
+}
+
+input TeamMemberPositionCreateInput {
+  title: String
+  titleEs: String
+  titlePor: String
+  name: String
+}
+
+input TeamMemberPositionRelateToOneInput {
+  create: TeamMemberPositionCreateInput
+  connect: TeamMemberPositionWhereUniqueInput
+  disconnect: TeamMemberPositionWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input TeamMemberPositionUpdateInput {
+  title: String
+  titleEs: String
+  titlePor: String
+  name: String
+}
+
+input TeamMemberPositionWhereInput {
+  AND: [TeamMemberPositionWhereInput]
+  OR: [TeamMemberPositionWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  titleEs: String
+  titleEs_not: String
+  titleEs_contains: String
+  titleEs_not_contains: String
+  titleEs_starts_with: String
+  titleEs_not_starts_with: String
+  titleEs_ends_with: String
+  titleEs_not_ends_with: String
+  titleEs_i: String
+  titleEs_not_i: String
+  titleEs_contains_i: String
+  titleEs_not_contains_i: String
+  titleEs_starts_with_i: String
+  titleEs_not_starts_with_i: String
+  titleEs_ends_with_i: String
+  titleEs_not_ends_with_i: String
+  titleEs_in: [String]
+  titleEs_not_in: [String]
+  titlePor: String
+  titlePor_not: String
+  titlePor_contains: String
+  titlePor_not_contains: String
+  titlePor_starts_with: String
+  titlePor_not_starts_with: String
+  titlePor_ends_with: String
+  titlePor_not_ends_with: String
+  titlePor_i: String
+  titlePor_not_i: String
+  titlePor_contains_i: String
+  titlePor_not_contains_i: String
+  titlePor_starts_with_i: String
+  titlePor_not_starts_with_i: String
+  titlePor_ends_with_i: String
+  titlePor_not_ends_with_i: String
+  titlePor_in: [String]
+  titlePor_not_in: [String]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input TeamMemberPositionWhereUniqueInput {
+  id: ID!
+}
+
+input TeamMemberPositionsCreateInput {
+  data: TeamMemberPositionCreateInput
+}
+
+input TeamMemberPositionsUpdateInput {
+  id: ID!
+  data: TeamMemberPositionUpdateInput
+}
+
+input TeamMemberUpdateInput {
+  firstName: String
+  lastName: String
+  state: String
+  lang: LangRelateToManyInput
+  isFounder: Boolean
+  position: TeamMemberPositionRelateToOneInput
+  department: DepartmentRelateToOneInput
+  degree: String
+  about: String
+  teamMemberCountry: TeamMemberCountryRelateToOneInput
+  city: String
+  picture: Upload
+}
+
+input TeamMemberWhereInput {
+  AND: [TeamMemberWhereInput]
+  OR: [TeamMemberWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  firstName: String
+  firstName_not: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  firstName_i: String
+  firstName_not_i: String
+  firstName_contains_i: String
+  firstName_not_contains_i: String
+  firstName_starts_with_i: String
+  firstName_not_starts_with_i: String
+  firstName_ends_with_i: String
+  firstName_not_ends_with_i: String
+  firstName_in: [String]
+  firstName_not_in: [String]
+  lastName: String
+  lastName_not: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  lastName_i: String
+  lastName_not_i: String
+  lastName_contains_i: String
+  lastName_not_contains_i: String
+  lastName_starts_with_i: String
+  lastName_not_starts_with_i: String
+  lastName_ends_with_i: String
+  lastName_not_ends_with_i: String
+  lastName_in: [String]
+  lastName_not_in: [String]
+  state: String
+  state_not: String
+  state_in: [String]
+  state_not_in: [String]
+  """condition must be true for all nodes"""
+  lang_every: LangWhereInput
+  """condition must be true for at least 1 node"""
+  lang_some: LangWhereInput
+  """condition must be false for all nodes"""
+  lang_none: LangWhereInput
+  """is the relation field null"""
+  lang_is_null: Boolean
+  isFounder: Boolean
+  isFounder_not: Boolean
+  position: TeamMemberPositionWhereInput
+  position_is_null: Boolean
+  department: DepartmentWhereInput
+  department_is_null: Boolean
+  degree: String
+  degree_not: String
+  degree_contains: String
+  degree_not_contains: String
+  degree_starts_with: String
+  degree_not_starts_with: String
+  degree_ends_with: String
+  degree_not_ends_with: String
+  degree_i: String
+  degree_not_i: String
+  degree_contains_i: String
+  degree_not_contains_i: String
+  degree_starts_with_i: String
+  degree_not_starts_with_i: String
+  degree_ends_with_i: String
+  degree_not_ends_with_i: String
+  degree_in: [String]
+  degree_not_in: [String]
+  about: String
+  about_not: String
+  about_contains: String
+  about_not_contains: String
+  about_starts_with: String
+  about_not_starts_with: String
+  about_ends_with: String
+  about_not_ends_with: String
+  about_i: String
+  about_not_i: String
+  about_contains_i: String
+  about_not_contains_i: String
+  about_starts_with_i: String
+  about_not_starts_with_i: String
+  about_ends_with_i: String
+  about_not_ends_with_i: String
+  about_in: [String]
+  about_not_in: [String]
+  teamMemberCountry: TeamMemberCountryWhereInput
+  teamMemberCountry_is_null: Boolean
+  city: String
+  city_not: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
+  city_i: String
+  city_not_i: String
+  city_contains_i: String
+  city_not_contains_i: String
+  city_starts_with_i: String
+  city_not_starts_with_i: String
+  city_ends_with_i: String
+  city_not_ends_with_i: String
+  city_in: [String]
+  city_not_in: [String]
+  picture: String
+  picture_not: String
+  picture_contains: String
+  picture_not_contains: String
+  picture_starts_with: String
+  picture_not_starts_with: String
+  picture_ends_with: String
+  picture_not_ends_with: String
+  picture_in: [String]
+  picture_not_in: [String]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input TeamMemberWhereUniqueInput {
+  id: ID!
+}
+
+input TeamMembersCreateInput {
+  data: TeamMemberCreateInput
+}
+
+input TeamMembersUpdateInput {
+  id: ID!
+  data: TeamMemberUpdateInput
+}
+
+input UserCreateInput {
+  name: String
+  email: String
+  isAdmin: Boolean
+  password: String
+}
+
+input UserRelateToOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  disconnect: UserWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input UserUpdateInput {
+  name: String
+  email: String
+  isAdmin: Boolean
+  password: String
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput]
+  OR: [UserWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  email: String
+  email_not: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  email_i: String
+  email_not_i: String
+  email_contains_i: String
+  email_not_contains_i: String
+  email_starts_with_i: String
+  email_not_starts_with_i: String
+  email_ends_with_i: String
+  email_not_ends_with_i: String
+  email_in: [String]
+  email_not_in: [String]
+  isAdmin: Boolean
+  isAdmin_not: Boolean
+  password_is_set: Boolean
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input UserWhereUniqueInput {
+  id: ID!
+}
+
+input UsersCreateInput {
+  data: UserCreateInput
+}
+
+input UsersUpdateInput {
+  id: ID!
+  data: UserUpdateInput
+}
+
+input VimeoCreateInput {
+  title: String
+  lang: LangRelateToManyInput
+  order: Int
+  description: String
+  url: String
+  thumbnail: Upload
+}
+
+input VimeoRelateToManyInput {
+  create: [VimeoCreateInput]
+  connect: [VimeoWhereUniqueInput]
+  disconnect: [VimeoWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input VimeoRelateToOneInput {
+  create: VimeoCreateInput
+  connect: VimeoWhereUniqueInput
+  disconnect: VimeoWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input VimeoUpdateInput {
+  title: String
+  lang: LangRelateToManyInput
+  order: Int
+  description: String
+  url: String
+  thumbnail: Upload
+}
+
+input VimeoWhereInput {
+  AND: [VimeoWhereInput]
+  OR: [VimeoWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  """condition must be true for all nodes"""
+  lang_every: LangWhereInput
+  """condition must be true for at least 1 node"""
+  lang_some: LangWhereInput
+  """condition must be false for all nodes"""
+  lang_none: LangWhereInput
+  """is the relation field null"""
+  lang_is_null: Boolean
+  order: Int
+  order_not: Int
+  order_lt: Int
+  order_lte: Int
+  order_gt: Int
+  order_gte: Int
+  order_in: [Int]
+  order_not_in: [Int]
+  description: String
+  description_not: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  description_i: String
+  description_not_i: String
+  description_contains_i: String
+  description_not_contains_i: String
+  description_starts_with_i: String
+  description_not_starts_with_i: String
+  description_ends_with_i: String
+  description_not_ends_with_i: String
+  description_in: [String]
+  description_not_in: [String]
+  url: String
+  url_not: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
+  url_i: String
+  url_not_i: String
+  url_contains_i: String
+  url_not_contains_i: String
+  url_starts_with_i: String
+  url_not_starts_with_i: String
+  url_ends_with_i: String
+  url_not_ends_with_i: String
+  url_in: [String]
+  url_not_in: [String]
+  thumbnail: String
+  thumbnail_not: String
+  thumbnail_contains: String
+  thumbnail_not_contains: String
+  thumbnail_starts_with: String
+  thumbnail_not_starts_with: String
+  thumbnail_ends_with: String
+  thumbnail_not_ends_with: String
+  thumbnail_in: [String]
+  thumbnail_not_in: [String]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  updatedAt_in: [DateTime]
+  updatedAt_not_in: [DateTime]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdAt_in: [DateTime]
+  createdAt_not_in: [DateTime]
+  updater: UserWhereInput
+  updater_is_null: Boolean
+  creator: UserWhereInput
+  creator_is_null: Boolean
+}
+
+input VimeoWhereUniqueInput {
+  id: ID!
+}
+
+input VimeosCreateInput {
+  data: VimeoCreateInput
+}
+
+input VimeosUpdateInput {
+  id: ID!
+  data: VimeoUpdateInput
+}
+
+input _ListSchemaFieldsInput {
+  type: String
+}
+
+input _ksListsMetaInput {
+  key: String
+  """Whether this is an auxiliary helper list"""
+  auxiliary: Boolean
+}
+
+"""A keystone list"""
+type Article {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the Article List config, or 2. As an alias to the field set on 'labelField' in the Article List config, or 3. As an alias to a 'name' field on the Article List (if one exists), or 4. As an alias to the 'id' field on the Article List."""
+  _label_: String
+  id: ID
+  title: String
+  slug: String
+  state: String
+  lang(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): [Lang]
+  _langMeta(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  excerpt: String
+  description: String
+  date: String
+  thumbnail: File
+  image: File
+  metaData: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type ContactBannerBlock {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the ContactBannerBlock List config, or 2. As an alias to the field set on 'labelField' in the ContactBannerBlock List config, or 3. As an alias to a 'name' field on the ContactBannerBlock List (if one exists), or 4. As an alias to the 'id' field on the ContactBannerBlock List."""
+  _label_: String
+  id: ID
+  title: String
+  description: String
+  bannerType: String
+  cta: String
+  ctaUrl: String
+  video: Vimeo
+  backgroundImage: File
+  image: File
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type Content {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the Content List config, or 2. As an alias to the field set on 'labelField' in the Content List config, or 3. As an alias to a 'name' field on the Content List (if one exists), or 4. As an alias to the 'id' field on the Content List."""
+  _label_: String
+  id: ID
+  name: String
+  lang(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): [Lang]
+  _langMeta(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  templateHomeBanner1: ContactBannerBlock
+  templateHomeArticles(where: ArticleWhereInput, search: String, sortBy: [SortArticlesBy!], orderBy: String, first: Int, skip: Int): [Article]
+  _templateHomeArticlesMeta(where: ArticleWhereInput, search: String, sortBy: [SortArticlesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  templateHomeFarmer(where: FarmerWhereInput, search: String, sortBy: [SortFarmersBy!], orderBy: String, first: Int, skip: Int): [Farmer]
+  _templateHomeFarmerMeta(where: FarmerWhereInput, search: String, sortBy: [SortFarmersBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  templateHomeVimeo(where: VimeoWhereInput, search: String, sortBy: [SortVimeosBy!], orderBy: String, first: Int, skip: Int): [Vimeo]
+  _templateHomeVimeoMeta(where: VimeoWhereInput, search: String, sortBy: [SortVimeosBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  templateHomeArticleFeatured(where: ArticleWhereInput, search: String, sortBy: [SortArticlesBy!], orderBy: String, first: Int, skip: Int): [Article]
+  _templateHomeArticleFeaturedMeta(where: ArticleWhereInput, search: String, sortBy: [SortArticlesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  templateHomeFQA(where: FaqWhereInput, search: String, sortBy: [SortFaqsBy!], orderBy: String, first: Int, skip: Int): [Faq]
+  _templateHomeFQAMeta(where: FaqWhereInput, search: String, sortBy: [SortFaqsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  templateFarmerTitle: String
+  templateFarmerContent: String
+  templateScienceTitle1: String
+  templateScienceContent1: String
+  templateScienceTitle2: String
+  templateScienceContent2: String
+  templateScienceTitle3: String
+  templateScienceContent3: String
+  templateScienceTitle4: String
+  templateScienceContent4: String
+  templateScienceBanner1: ContactBannerBlock
+  templateScienceVimeo(where: VimeoWhereInput, search: String, sortBy: [SortVimeosBy!], orderBy: String, first: Int, skip: Int): [Vimeo]
+  _templateScienceVimeoMeta(where: VimeoWhereInput, search: String, sortBy: [SortVimeosBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  templateScienceFQA(where: FaqWhereInput, search: String, sortBy: [SortFaqsBy!], orderBy: String, first: Int, skip: Int): [Faq]
+  _templateScienceFQAMeta(where: FaqWhereInput, search: String, sortBy: [SortFaqsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  templateAboutUsTab1Title: String
+  templateAboutUsTab1Content: String
+  templateAboutUsTab1Video: Vimeo
+  templateAboutUsTab2Title: String
+  templateAboutUsTab2Content: String
+  templateAboutUsTab3Title1: String
+  templateAboutUsTab3Content1: String
+  templateAboutUsTab3Title2: String
+  templateAboutUsTab3Content2: String
+  templateAboutUsTab3Title3: String
+  templateAboutUsTab3Content3: String
+  templateAboutUsTab3Banner: ContactBannerBlock
+  templateCareersContent: String
+  templateContactUsContent: String
+  templatePrivacyPolicyContent: String
+  templateTermsOfServiceContent: String
+  templatePrivacyPracticeContent: String
+  templateBrasilTermsContent: String
+  templateProductsSubTitle: String
+  templateProductsBanner: ContactBannerBlock
+  templateProductsFarmer(where: FarmerWhereInput, search: String, sortBy: [SortFarmersBy!], orderBy: String, first: Int, skip: Int): [Farmer]
+  _templateProductsFarmerMeta(where: FarmerWhereInput, search: String, sortBy: [SortFarmersBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  templateProductsVimeo(where: VimeoWhereInput, search: String, sortBy: [SortVimeosBy!], orderBy: String, first: Int, skip: Int): [Vimeo]
+  _templateProductsVimeoMeta(where: VimeoWhereInput, search: String, sortBy: [SortVimeosBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  templateProductsFQA(where: FaqWhereInput, search: String, sortBy: [SortFaqsBy!], orderBy: String, first: Int, skip: Int): [Faq]
+  _templateProductsFQAMeta(where: FaqWhereInput, search: String, sortBy: [SortFaqsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  sustainabilityOurMissionContent1: String
+  sustainabilityOurMissionContent2: String
+  ourPurposeContent: String
+  ourPurposeColumn1Title: String
+  ourPurposeColumn1Image: File
+  ourPurposeColumn1(where: PurposeWhereInput, search: String, sortBy: [SortPurposesBy!], orderBy: String, first: Int, skip: Int): [Purpose]
+  _ourPurposeColumn1Meta(where: PurposeWhereInput, search: String, sortBy: [SortPurposesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  ourPurposeColumn2Title: String
+  ourPurposeColumn2Image: File
+  ourPurposeColumn2(where: PurposeWhereInput, search: String, sortBy: [SortPurposesBy!], orderBy: String, first: Int, skip: Int): [Purpose]
+  _ourPurposeColumn2Meta(where: PurposeWhereInput, search: String, sortBy: [SortPurposesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  ourPurposeColumn3Title: String
+  ourPurposeColumn3Image: File
+  ourPurposeColumn3(where: PurposeWhereInput, search: String, sortBy: [SortPurposesBy!], orderBy: String, first: Int, skip: Int): [Purpose]
+  _ourPurposeColumn3Meta(where: PurposeWhereInput, search: String, sortBy: [SortPurposesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  goalTitle: String
+  goalContent: String
+  goalImage: File
+  goals(where: GoalWhereInput, search: String, sortBy: [SortGoalsBy!], orderBy: String, first: Int, skip: Int): [Goal]
+  _goalsMeta(where: GoalWhereInput, search: String, sortBy: [SortGoalsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type Department {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the Department List config, or 2. As an alias to the field set on 'labelField' in the Department List config, or 3. As an alias to a 'name' field on the Department List (if one exists), or 4. As an alias to the 'id' field on the Department List."""
+  _label_: String
+  id: ID
+  title: String
+  titleEs: String
+  titlePor: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type Faq {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the Faq List config, or 2. As an alias to the field set on 'labelField' in the Faq List config, or 3. As an alias to a 'name' field on the Faq List (if one exists), or 4. As an alias to the 'id' field on the Faq List."""
+  _label_: String
+  id: ID
+  title: String
+  state: String
+  lang(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): [Lang]
+  _langMeta(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  description: String
+  score: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type Farmer {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the Farmer List config, or 2. As an alias to the field set on 'labelField' in the Farmer List config, or 3. As an alias to a 'name' field on the Farmer List (if one exists), or 4. As an alias to the 'id' field on the Farmer List."""
+  _label_: String
+  id: ID
+  title: String
+  slug: String
+  state: String
+  lang(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): [Lang]
+  _langMeta(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  order: Int
+  picture: File
+  country: String
+  city: String
+  description: String
+  quote: String
+  vimeo: Vimeo
+  video(where: VimeoWhereInput, search: String, sortBy: [SortVimeosBy!], orderBy: String, first: Int, skip: Int): [Vimeo]
+  _videoMeta(where: VimeoWhereInput, search: String, sortBy: [SortVimeosBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+type File {
+  id: ID
+  path: String
+  filename: String
+  originalFilename: String
+  mimetype: String
+  encoding: String
+  publicUrl: String
+}
+
+"""A keystone list"""
+type Goal {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the Goal List config, or 2. As an alias to the field set on 'labelField' in the Goal List config, or 3. As an alias to a 'name' field on the Goal List (if one exists), or 4. As an alias to the 'id' field on the Goal List."""
+  _label_: String
+  id: ID
+  title: String
+  icon: File
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type HeroBlock {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the HeroBlock List config, or 2. As an alias to the field set on 'labelField' in the HeroBlock List config, or 3. As an alias to a 'name' field on the HeroBlock List (if one exists), or 4. As an alias to the 'id' field on the HeroBlock List."""
+  _label_: String
+  id: ID
+  title: String
+  backgroundImage: File
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type Investor {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the Investor List config, or 2. As an alias to the field set on 'labelField' in the Investor List config, or 3. As an alias to a 'name' field on the Investor List (if one exists), or 4. As an alias to the 'id' field on the Investor List."""
+  _label_: String
+  id: ID
+  title: String
+  slug: String
+  state: String
+  lang(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): [Lang]
+  _langMeta(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  about: String
+  image: File
+  website: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type Lang {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the Lang List config, or 2. As an alias to the field set on 'labelField' in the Lang List config, or 3. As an alias to a 'name' field on the Lang List (if one exists), or 4. As an alias to the 'id' field on the Lang List."""
+  _label_: String
+  id: ID
+  name: String
+  abbreviation: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type Multimedia {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the Multimedia List config, or 2. As an alias to the field set on 'labelField' in the Multimedia List config, or 3. As an alias to a 'name' field on the Multimedia List (if one exists), or 4. As an alias to the 'id' field on the Multimedia List."""
+  _label_: String
+  id: ID
+  title: String
+  file: File
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+type Mutation {
+  """Create a single Article item."""
+  createArticle(data: ArticleCreateInput): Article
+  """Create multiple Article items."""
+  createArticles(data: [ArticlesCreateInput]): [Article]
+  """Update a single Article item by ID."""
+  updateArticle(id: ID!, data: ArticleUpdateInput): Article
+  """Update multiple Article items by ID."""
+  updateArticles(data: [ArticlesUpdateInput]): [Article]
+  """Delete a single Article item by ID."""
+  deleteArticle(id: ID!): Article
+  """Delete multiple Article items by ID."""
+  deleteArticles(ids: [ID!]): [Article]
+  """Create a single ContactBannerBlock item."""
+  createBannertype(data: BannertypeCreateInput): ContactBannerBlock
+  """Create multiple ContactBannerBlock items."""
+  createBannertypes(data: [BannertypesCreateInput]): [ContactBannerBlock]
+  """Update a single ContactBannerBlock item by ID."""
+  updateBannertype(id: ID!, data: BannertypeUpdateInput): ContactBannerBlock
+  """Update multiple ContactBannerBlock items by ID."""
+  updateBannertypes(data: [BannertypesUpdateInput]): [ContactBannerBlock]
+  """Delete a single ContactBannerBlock item by ID."""
+  deleteBannertype(id: ID!): ContactBannerBlock
+  """Delete multiple ContactBannerBlock items by ID."""
+  deleteBannertypes(ids: [ID!]): [ContactBannerBlock]
+  """Create a single Content item."""
+  createContent(data: ContentCreateInput): Content
+  """Create multiple Content items."""
+  createContents(data: [ContentsCreateInput]): [Content]
+  """Update a single Content item by ID."""
+  updateContent(id: ID!, data: ContentUpdateInput): Content
+  """Update multiple Content items by ID."""
+  updateContents(data: [ContentsUpdateInput]): [Content]
+  """Delete a single Content item by ID."""
+  deleteContent(id: ID!): Content
+  """Delete multiple Content items by ID."""
+  deleteContents(ids: [ID!]): [Content]
+  """Create a single Department item."""
+  createDepartment(data: DepartmentCreateInput): Department
+  """Create multiple Department items."""
+  createDepartments(data: [DepartmentsCreateInput]): [Department]
+  """Update a single Department item by ID."""
+  updateDepartment(id: ID!, data: DepartmentUpdateInput): Department
+  """Update multiple Department items by ID."""
+  updateDepartments(data: [DepartmentsUpdateInput]): [Department]
+  """Delete a single Department item by ID."""
+  deleteDepartment(id: ID!): Department
+  """Delete multiple Department items by ID."""
+  deleteDepartments(ids: [ID!]): [Department]
+  """Create a single Faq item."""
+  createFaq(data: FaqCreateInput): Faq
+  """Create multiple Faq items."""
+  createFaqs(data: [FaqsCreateInput]): [Faq]
+  """Update a single Faq item by ID."""
+  updateFaq(id: ID!, data: FaqUpdateInput): Faq
+  """Update multiple Faq items by ID."""
+  updateFaqs(data: [FaqsUpdateInput]): [Faq]
+  """Delete a single Faq item by ID."""
+  deleteFaq(id: ID!): Faq
+  """Delete multiple Faq items by ID."""
+  deleteFaqs(ids: [ID!]): [Faq]
+  """Create a single Farmer item."""
+  createFarmer(data: FarmerCreateInput): Farmer
+  """Create multiple Farmer items."""
+  createFarmers(data: [FarmersCreateInput]): [Farmer]
+  """Update a single Farmer item by ID."""
+  updateFarmer(id: ID!, data: FarmerUpdateInput): Farmer
+  """Update multiple Farmer items by ID."""
+  updateFarmers(data: [FarmersUpdateInput]): [Farmer]
+  """Delete a single Farmer item by ID."""
+  deleteFarmer(id: ID!): Farmer
+  """Delete multiple Farmer items by ID."""
+  deleteFarmers(ids: [ID!]): [Farmer]
+  """Create a single Goal item."""
+  createGoal(data: GoalCreateInput): Goal
+  """Create multiple Goal items."""
+  createGoals(data: [GoalsCreateInput]): [Goal]
+  """Update a single Goal item by ID."""
+  updateGoal(id: ID!, data: GoalUpdateInput): Goal
+  """Update multiple Goal items by ID."""
+  updateGoals(data: [GoalsUpdateInput]): [Goal]
+  """Delete a single Goal item by ID."""
+  deleteGoal(id: ID!): Goal
+  """Delete multiple Goal items by ID."""
+  deleteGoals(ids: [ID!]): [Goal]
+  """Create a single HeroBlock item."""
+  createHeroBlock(data: HeroBlockCreateInput): HeroBlock
+  """Create multiple HeroBlock items."""
+  createHeroBlocks(data: [HeroBlocksCreateInput]): [HeroBlock]
+  """Update a single HeroBlock item by ID."""
+  updateHeroBlock(id: ID!, data: HeroBlockUpdateInput): HeroBlock
+  """Update multiple HeroBlock items by ID."""
+  updateHeroBlocks(data: [HeroBlocksUpdateInput]): [HeroBlock]
+  """Delete a single HeroBlock item by ID."""
+  deleteHeroBlock(id: ID!): HeroBlock
+  """Delete multiple HeroBlock items by ID."""
+  deleteHeroBlocks(ids: [ID!]): [HeroBlock]
+  """Create a single Investor item."""
+  createInvestor(data: InvestorCreateInput): Investor
+  """Create multiple Investor items."""
+  createInvestors(data: [InvestorsCreateInput]): [Investor]
+  """Update a single Investor item by ID."""
+  updateInvestor(id: ID!, data: InvestorUpdateInput): Investor
+  """Update multiple Investor items by ID."""
+  updateInvestors(data: [InvestorsUpdateInput]): [Investor]
+  """Delete a single Investor item by ID."""
+  deleteInvestor(id: ID!): Investor
+  """Delete multiple Investor items by ID."""
+  deleteInvestors(ids: [ID!]): [Investor]
+  """Create a single Lang item."""
+  createLang(data: LangCreateInput): Lang
+  """Create multiple Lang items."""
+  createLangs(data: [LangsCreateInput]): [Lang]
+  """Update a single Lang item by ID."""
+  updateLang(id: ID!, data: LangUpdateInput): Lang
+  """Update multiple Lang items by ID."""
+  updateLangs(data: [LangsUpdateInput]): [Lang]
+  """Delete a single Lang item by ID."""
+  deleteLang(id: ID!): Lang
+  """Delete multiple Lang items by ID."""
+  deleteLangs(ids: [ID!]): [Lang]
+  """Create a single Multimedia item."""
+  createMultimedia(data: MultimediaCreateInput): Multimedia
+  """Create multiple Multimedia items."""
+  createMultimedias(data: [MultimediasCreateInput]): [Multimedia]
+  """Update a single Multimedia item by ID."""
+  updateMultimedia(id: ID!, data: MultimediaUpdateInput): Multimedia
+  """Update multiple Multimedia items by ID."""
+  updateMultimedias(data: [MultimediasUpdateInput]): [Multimedia]
+  """Delete a single Multimedia item by ID."""
+  deleteMultimedia(id: ID!): Multimedia
+  """Delete multiple Multimedia items by ID."""
+  deleteMultimedias(ids: [ID!]): [Multimedia]
+  """Create a single Page item."""
+  createPage(data: PageCreateInput): Page
+  """Create multiple Page items."""
+  createPages(data: [PagesCreateInput]): [Page]
+  """Update a single Page item by ID."""
+  updatePage(id: ID!, data: PageUpdateInput): Page
+  """Update multiple Page items by ID."""
+  updatePages(data: [PagesUpdateInput]): [Page]
+  """Delete a single Page item by ID."""
+  deletePage(id: ID!): Page
+  """Delete multiple Page items by ID."""
+  deletePages(ids: [ID!]): [Page]
+  """Create a single PressRelease item."""
+  createPressRelease(data: PressReleaseCreateInput): PressRelease
+  """Create multiple PressRelease items."""
+  createPressReleases(data: [PressReleasesCreateInput]): [PressRelease]
+  """Update a single PressRelease item by ID."""
+  updatePressRelease(id: ID!, data: PressReleaseUpdateInput): PressRelease
+  """Update multiple PressRelease items by ID."""
+  updatePressReleases(data: [PressReleasesUpdateInput]): [PressRelease]
+  """Delete a single PressRelease item by ID."""
+  deletePressRelease(id: ID!): PressRelease
+  """Delete multiple PressRelease items by ID."""
+  deletePressReleases(ids: [ID!]): [PressRelease]
+  """Create a single Product item."""
+  createProduct(data: ProductCreateInput): Product
+  """Create multiple Product items."""
+  createProducts(data: [ProductsCreateInput]): [Product]
+  """Update a single Product item by ID."""
+  updateProduct(id: ID!, data: ProductUpdateInput): Product
+  """Update multiple Product items by ID."""
+  updateProducts(data: [ProductsUpdateInput]): [Product]
+  """Delete a single Product item by ID."""
+  deleteProduct(id: ID!): Product
+  """Delete multiple Product items by ID."""
+  deleteProducts(ids: [ID!]): [Product]
+  """Create a single Purpose item."""
+  createPurpose(data: PurposeCreateInput): Purpose
+  """Create multiple Purpose items."""
+  createPurposes(data: [PurposesCreateInput]): [Purpose]
+  """Update a single Purpose item by ID."""
+  updatePurpose(id: ID!, data: PurposeUpdateInput): Purpose
+  """Update multiple Purpose items by ID."""
+  updatePurposes(data: [PurposesUpdateInput]): [Purpose]
+  """Delete a single Purpose item by ID."""
+  deletePurpose(id: ID!): Purpose
+  """Delete multiple Purpose items by ID."""
+  deletePurposes(ids: [ID!]): [Purpose]
+  """Create a single TeamMember item."""
+  createTeamMember(data: TeamMemberCreateInput): TeamMember
+  """Create multiple TeamMember items."""
+  createTeamMembers(data: [TeamMembersCreateInput]): [TeamMember]
+  """Update a single TeamMember item by ID."""
+  updateTeamMember(id: ID!, data: TeamMemberUpdateInput): TeamMember
+  """Update multiple TeamMember items by ID."""
+  updateTeamMembers(data: [TeamMembersUpdateInput]): [TeamMember]
+  """Delete a single TeamMember item by ID."""
+  deleteTeamMember(id: ID!): TeamMember
+  """Delete multiple TeamMember items by ID."""
+  deleteTeamMembers(ids: [ID!]): [TeamMember]
+  """Create a single TeamMemberCountry item."""
+  createTeamMemberCountry(data: TeamMemberCountryCreateInput): TeamMemberCountry
+  """Create multiple TeamMemberCountry items."""
+  createTeamMemberCountries(data: [TeamMemberCountriesCreateInput]): [TeamMemberCountry]
+  """Update a single TeamMemberCountry item by ID."""
+  updateTeamMemberCountry(id: ID!, data: TeamMemberCountryUpdateInput): TeamMemberCountry
+  """Update multiple TeamMemberCountry items by ID."""
+  updateTeamMemberCountries(data: [TeamMemberCountriesUpdateInput]): [TeamMemberCountry]
+  """Delete a single TeamMemberCountry item by ID."""
+  deleteTeamMemberCountry(id: ID!): TeamMemberCountry
+  """Delete multiple TeamMemberCountry items by ID."""
+  deleteTeamMemberCountries(ids: [ID!]): [TeamMemberCountry]
+  """Create a single TeamMemberPosition item."""
+  createTeamMemberPosition(data: TeamMemberPositionCreateInput): TeamMemberPosition
+  """Create multiple TeamMemberPosition items."""
+  createTeamMemberPositions(data: [TeamMemberPositionsCreateInput]): [TeamMemberPosition]
+  """Update a single TeamMemberPosition item by ID."""
+  updateTeamMemberPosition(id: ID!, data: TeamMemberPositionUpdateInput): TeamMemberPosition
+  """Update multiple TeamMemberPosition items by ID."""
+  updateTeamMemberPositions(data: [TeamMemberPositionsUpdateInput]): [TeamMemberPosition]
+  """Delete a single TeamMemberPosition item by ID."""
+  deleteTeamMemberPosition(id: ID!): TeamMemberPosition
+  """Delete multiple TeamMemberPosition items by ID."""
+  deleteTeamMemberPositions(ids: [ID!]): [TeamMemberPosition]
+  """Create a single User item."""
+  createUser(data: UserCreateInput): User
+  """Create multiple User items."""
+  createUsers(data: [UsersCreateInput]): [User]
+  """Update a single User item by ID."""
+  updateUser(id: ID!, data: UserUpdateInput): User
+  """Update multiple User items by ID."""
+  updateUsers(data: [UsersUpdateInput]): [User]
+  """Delete a single User item by ID."""
+  deleteUser(id: ID!): User
+  """Delete multiple User items by ID."""
+  deleteUsers(ids: [ID!]): [User]
+  """Create a single Vimeo item."""
+  createVimeo(data: VimeoCreateInput): Vimeo
+  """Create multiple Vimeo items."""
+  createVimeos(data: [VimeosCreateInput]): [Vimeo]
+  """Update a single Vimeo item by ID."""
+  updateVimeo(id: ID!, data: VimeoUpdateInput): Vimeo
+  """Update multiple Vimeo items by ID."""
+  updateVimeos(data: [VimeosUpdateInput]): [Vimeo]
+  """Delete a single Vimeo item by ID."""
+  deleteVimeo(id: ID!): Vimeo
+  """Delete multiple Vimeo items by ID."""
+  deleteVimeos(ids: [ID!]): [Vimeo]
+  """Authenticate and generate a token for a User with the Password Authentication Strategy."""
+  authenticateUserWithPassword(email: String, password: String): authenticateUserOutput
+  unauthenticateUser: unauthenticateUserOutput
+}
+
+"""A keystone list"""
+type Page {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the Page List config, or 2. As an alias to the field set on 'labelField' in the Page List config, or 3. As an alias to a 'name' field on the Page List (if one exists), or 4. As an alias to the 'id' field on the Page List."""
+  _label_: String
+  id: ID
+  title: String
+  slug: String
+  state: String
+  template: String
+  lang(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): [Lang]
+  _langMeta(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  heroblock: HeroBlock
+  contactBannerBlock: ContactBannerBlock
+  secondaryBannerBlock: ContactBannerBlock
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type PressRelease {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the PressRelease List config, or 2. As an alias to the field set on 'labelField' in the PressRelease List config, or 3. As an alias to a 'name' field on the PressRelease List (if one exists), or 4. As an alias to the 'id' field on the PressRelease List."""
+  _label_: String
+  id: ID
+  title: String
+  slug: String
+  state: String
+  lang(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): [Lang]
+  _langMeta(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  subTitle: String
+  shortDescription: String
+  description: String
+  date: String
+  mediaContactname: String
+  mediaContactPhone: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type Product {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the Product List config, or 2. As an alias to the field set on 'labelField' in the Product List config, or 3. As an alias to a 'name' field on the Product List (if one exists), or 4. As an alias to the 'id' field on the Product List."""
+  _label_: String
+  id: ID
+  title: String
+  slug: String
+  state: String
+  lang(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): [Lang]
+  _langMeta(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  logo: File
+  logoBlack: File
+  registro: String
+  image: File
+  excerpt: String
+  content: String
+  introPage: String
+  subtitle: String
+  video: Vimeo
+  download(where: MultimediaWhereInput, search: String, sortBy: [SortMultimediasBy!], orderBy: String, first: Int, skip: Int): [Multimedia]
+  _downloadMeta(where: MultimediaWhereInput, search: String, sortBy: [SortMultimediasBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  heroblock: HeroBlock
+  bullet1: String
+  bulletDescription1: String
+  iconSection1: File
+  tooltipSection1: String
+  bullet2: String
+  bulletDescription2: String
+  iconSection2: File
+  tooltipSection2: String
+  bullet3: String
+  bulletDescription3: String
+  iconSection3: File
+  tooltipSection3: String
+  bullet4: String
+  bulletDescription4: String
+  iconSection4: File
+  tooltipSection4: String
+  bullet5: String
+  bulletDescription5: String
+  iconSection5: File
+  tooltipSection5: String
+  bullet6: String
+  bulletDescription6: String
+  iconSection6: File
+  tooltipSection6: String
+  contactBannerBlock: ContactBannerBlock
+  titleSectionVideo1: String
+  textSectionVideo1: String
+  textSectionVideo2: String
+  titleSectionVideo3: String
+  textSectionVideo3: String
+  titleSectionVideo4: String
+  textSectionVideo4: String
+  faq(where: FaqWhereInput, search: String, sortBy: [SortFaqsBy!], orderBy: String, first: Int, skip: Int): [Faq]
+  _faqMeta(where: FaqWhereInput, search: String, sortBy: [SortFaqsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  article(where: ArticleWhereInput, search: String, sortBy: [SortArticlesBy!], orderBy: String, first: Int, skip: Int): [Article]
+  _articleMeta(where: ArticleWhereInput, search: String, sortBy: [SortArticlesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type Purpose {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the Purpose List config, or 2. As an alias to the field set on 'labelField' in the Purpose List config, or 3. As an alias to a 'name' field on the Purpose List (if one exists), or 4. As an alias to the 'id' field on the Purpose List."""
+  _label_: String
+  id: ID
+  title: String
+  icon: File
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+type Query {
+  """Search for all Article items which match the where clause."""
+  allArticles(where: ArticleWhereInput, search: String, sortBy: [SortArticlesBy!], orderBy: String, first: Int, skip: Int): [Article]
+  """Search for the Article item with the matching ID."""
+  Article(where: ArticleWhereUniqueInput!): Article
+  """Perform a meta-query on all Article items which match the where clause."""
+  _allArticlesMeta(where: ArticleWhereInput, search: String, sortBy: [SortArticlesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the Article list."""
+  _ArticlesMeta: _ListMeta
+  """Search for all ContactBannerBlock items which match the where clause."""
+  allBannertypes(where: BannertypeWhereInput, search: String, sortBy: [SortBannertypesBy!], orderBy: String, first: Int, skip: Int): [ContactBannerBlock]
+  """Search for the ContactBannerBlock item with the matching ID."""
+  Bannertype(where: BannertypeWhereUniqueInput!): ContactBannerBlock
+  """Perform a meta-query on all ContactBannerBlock items which match the where clause."""
+  _allBannertypesMeta(where: BannertypeWhereInput, search: String, sortBy: [SortBannertypesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the Bannertype list."""
+  _BannertypesMeta: _ListMeta
+  """Search for all Content items which match the where clause."""
+  allContents(where: ContentWhereInput, search: String, sortBy: [SortContentsBy!], orderBy: String, first: Int, skip: Int): [Content]
+  """Search for the Content item with the matching ID."""
+  Content(where: ContentWhereUniqueInput!): Content
+  """Perform a meta-query on all Content items which match the where clause."""
+  _allContentsMeta(where: ContentWhereInput, search: String, sortBy: [SortContentsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the Content list."""
+  _ContentsMeta: _ListMeta
+  """Search for all Department items which match the where clause."""
+  allDepartments(where: DepartmentWhereInput, search: String, sortBy: [SortDepartmentsBy!], orderBy: String, first: Int, skip: Int): [Department]
+  """Search for the Department item with the matching ID."""
+  Department(where: DepartmentWhereUniqueInput!): Department
+  """Perform a meta-query on all Department items which match the where clause."""
+  _allDepartmentsMeta(where: DepartmentWhereInput, search: String, sortBy: [SortDepartmentsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the Department list."""
+  _DepartmentsMeta: _ListMeta
+  """Search for all Faq items which match the where clause."""
+  allFaqs(where: FaqWhereInput, search: String, sortBy: [SortFaqsBy!], orderBy: String, first: Int, skip: Int): [Faq]
+  """Search for the Faq item with the matching ID."""
+  Faq(where: FaqWhereUniqueInput!): Faq
+  """Perform a meta-query on all Faq items which match the where clause."""
+  _allFaqsMeta(where: FaqWhereInput, search: String, sortBy: [SortFaqsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the Faq list."""
+  _FaqsMeta: _ListMeta
+  """Search for all Farmer items which match the where clause."""
+  allFarmers(where: FarmerWhereInput, search: String, sortBy: [SortFarmersBy!], orderBy: String, first: Int, skip: Int): [Farmer]
+  """Search for the Farmer item with the matching ID."""
+  Farmer(where: FarmerWhereUniqueInput!): Farmer
+  """Perform a meta-query on all Farmer items which match the where clause."""
+  _allFarmersMeta(where: FarmerWhereInput, search: String, sortBy: [SortFarmersBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the Farmer list."""
+  _FarmersMeta: _ListMeta
+  """Search for all Goal items which match the where clause."""
+  allGoals(where: GoalWhereInput, search: String, sortBy: [SortGoalsBy!], orderBy: String, first: Int, skip: Int): [Goal]
+  """Search for the Goal item with the matching ID."""
+  Goal(where: GoalWhereUniqueInput!): Goal
+  """Perform a meta-query on all Goal items which match the where clause."""
+  _allGoalsMeta(where: GoalWhereInput, search: String, sortBy: [SortGoalsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the Goal list."""
+  _GoalsMeta: _ListMeta
+  """Search for all HeroBlock items which match the where clause."""
+  allHeroBlocks(where: HeroBlockWhereInput, search: String, sortBy: [SortHeroBlocksBy!], orderBy: String, first: Int, skip: Int): [HeroBlock]
+  """Search for the HeroBlock item with the matching ID."""
+  HeroBlock(where: HeroBlockWhereUniqueInput!): HeroBlock
+  """Perform a meta-query on all HeroBlock items which match the where clause."""
+  _allHeroBlocksMeta(where: HeroBlockWhereInput, search: String, sortBy: [SortHeroBlocksBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the HeroBlock list."""
+  _HeroBlocksMeta: _ListMeta
+  """Search for all Investor items which match the where clause."""
+  allInvestors(where: InvestorWhereInput, search: String, sortBy: [SortInvestorsBy!], orderBy: String, first: Int, skip: Int): [Investor]
+  """Search for the Investor item with the matching ID."""
+  Investor(where: InvestorWhereUniqueInput!): Investor
+  """Perform a meta-query on all Investor items which match the where clause."""
+  _allInvestorsMeta(where: InvestorWhereInput, search: String, sortBy: [SortInvestorsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the Investor list."""
+  _InvestorsMeta: _ListMeta
+  """Search for all Lang items which match the where clause."""
+  allLangs(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): [Lang]
+  """Search for the Lang item with the matching ID."""
+  Lang(where: LangWhereUniqueInput!): Lang
+  """Perform a meta-query on all Lang items which match the where clause."""
+  _allLangsMeta(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the Lang list."""
+  _LangsMeta: _ListMeta
+  """Search for all Multimedia items which match the where clause."""
+  allMultimedias(where: MultimediaWhereInput, search: String, sortBy: [SortMultimediasBy!], orderBy: String, first: Int, skip: Int): [Multimedia]
+  """Search for the Multimedia item with the matching ID."""
+  Multimedia(where: MultimediaWhereUniqueInput!): Multimedia
+  """Perform a meta-query on all Multimedia items which match the where clause."""
+  _allMultimediasMeta(where: MultimediaWhereInput, search: String, sortBy: [SortMultimediasBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the Multimedia list."""
+  _MultimediasMeta: _ListMeta
+  """Search for all Page items which match the where clause."""
+  allPages(where: PageWhereInput, search: String, sortBy: [SortPagesBy!], orderBy: String, first: Int, skip: Int): [Page]
+  """Search for the Page item with the matching ID."""
+  Page(where: PageWhereUniqueInput!): Page
+  """Perform a meta-query on all Page items which match the where clause."""
+  _allPagesMeta(where: PageWhereInput, search: String, sortBy: [SortPagesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the Page list."""
+  _PagesMeta: _ListMeta
+  """Search for all PressRelease items which match the where clause."""
+  allPressReleases(where: PressReleaseWhereInput, search: String, sortBy: [SortPressReleasesBy!], orderBy: String, first: Int, skip: Int): [PressRelease]
+  """Search for the PressRelease item with the matching ID."""
+  PressRelease(where: PressReleaseWhereUniqueInput!): PressRelease
+  """Perform a meta-query on all PressRelease items which match the where clause."""
+  _allPressReleasesMeta(where: PressReleaseWhereInput, search: String, sortBy: [SortPressReleasesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the PressRelease list."""
+  _PressReleasesMeta: _ListMeta
+  """Search for all Product items which match the where clause."""
+  allProducts(where: ProductWhereInput, search: String, sortBy: [SortProductsBy!], orderBy: String, first: Int, skip: Int): [Product]
+  """Search for the Product item with the matching ID."""
+  Product(where: ProductWhereUniqueInput!): Product
+  """Perform a meta-query on all Product items which match the where clause."""
+  _allProductsMeta(where: ProductWhereInput, search: String, sortBy: [SortProductsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the Product list."""
+  _ProductsMeta: _ListMeta
+  """Search for all Purpose items which match the where clause."""
+  allPurposes(where: PurposeWhereInput, search: String, sortBy: [SortPurposesBy!], orderBy: String, first: Int, skip: Int): [Purpose]
+  """Search for the Purpose item with the matching ID."""
+  Purpose(where: PurposeWhereUniqueInput!): Purpose
+  """Perform a meta-query on all Purpose items which match the where clause."""
+  _allPurposesMeta(where: PurposeWhereInput, search: String, sortBy: [SortPurposesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the Purpose list."""
+  _PurposesMeta: _ListMeta
+  """Search for all TeamMember items which match the where clause."""
+  allTeamMembers(where: TeamMemberWhereInput, search: String, sortBy: [SortTeamMembersBy!], orderBy: String, first: Int, skip: Int): [TeamMember]
+  """Search for the TeamMember item with the matching ID."""
+  TeamMember(where: TeamMemberWhereUniqueInput!): TeamMember
+  """Perform a meta-query on all TeamMember items which match the where clause."""
+  _allTeamMembersMeta(where: TeamMemberWhereInput, search: String, sortBy: [SortTeamMembersBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the TeamMember list."""
+  _TeamMembersMeta: _ListMeta
+  """Search for all TeamMemberCountry items which match the where clause."""
+  allTeamMemberCountries(where: TeamMemberCountryWhereInput, search: String, sortBy: [SortTeamMemberCountriesBy!], orderBy: String, first: Int, skip: Int): [TeamMemberCountry]
+  """Search for the TeamMemberCountry item with the matching ID."""
+  TeamMemberCountry(where: TeamMemberCountryWhereUniqueInput!): TeamMemberCountry
+  """Perform a meta-query on all TeamMemberCountry items which match the where clause."""
+  _allTeamMemberCountriesMeta(where: TeamMemberCountryWhereInput, search: String, sortBy: [SortTeamMemberCountriesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the TeamMemberCountry list."""
+  _TeamMemberCountriesMeta: _ListMeta
+  """Search for all TeamMemberPosition items which match the where clause."""
+  allTeamMemberPositions(where: TeamMemberPositionWhereInput, search: String, sortBy: [SortTeamMemberPositionsBy!], orderBy: String, first: Int, skip: Int): [TeamMemberPosition]
+  """Search for the TeamMemberPosition item with the matching ID."""
+  TeamMemberPosition(where: TeamMemberPositionWhereUniqueInput!): TeamMemberPosition
+  """Perform a meta-query on all TeamMemberPosition items which match the where clause."""
+  _allTeamMemberPositionsMeta(where: TeamMemberPositionWhereInput, search: String, sortBy: [SortTeamMemberPositionsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the TeamMemberPosition list."""
+  _TeamMemberPositionsMeta: _ListMeta
+  """Search for all User items which match the where clause."""
+  allUsers(where: UserWhereInput, search: String, sortBy: [SortUsersBy!], orderBy: String, first: Int, skip: Int): [User]
+  """Search for the User item with the matching ID."""
+  User(where: UserWhereUniqueInput!): User
+  """Perform a meta-query on all User items which match the where clause."""
+  _allUsersMeta(where: UserWhereInput, search: String, sortBy: [SortUsersBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the User list."""
+  _UsersMeta: _ListMeta
+  """Search for all Vimeo items which match the where clause."""
+  allVimeos(where: VimeoWhereInput, search: String, sortBy: [SortVimeosBy!], orderBy: String, first: Int, skip: Int): [Vimeo]
+  """Search for the Vimeo item with the matching ID."""
+  Vimeo(where: VimeoWhereUniqueInput!): Vimeo
+  """Perform a meta-query on all Vimeo items which match the where clause."""
+  _allVimeosMeta(where: VimeoWhereInput, search: String, sortBy: [SortVimeosBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  """Retrieve the meta-data for the Vimeo list."""
+  _VimeosMeta: _ListMeta
+  """Retrieve the meta-data for all lists."""
+  _ksListsMeta(where: _ksListsMetaInput): [_ListMeta]
+  """The version of the Keystone application serving this API."""
+  appVersion: String
+  authenticatedUser: User
+}
+
+"""A keystone list"""
+type TeamMember {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the TeamMember List config, or 2. As an alias to the field set on 'labelField' in the TeamMember List config, or 3. As an alias to a 'name' field on the TeamMember List (if one exists), or 4. As an alias to the 'id' field on the TeamMember List."""
+  _label_: String
+  id: ID
+  firstName: String
+  lastName: String
+  state: String
+  lang(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): [Lang]
+  _langMeta(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  isFounder: Boolean
+  position: TeamMemberPosition
+  department: Department
+  degree: String
+  about: String
+  teamMemberCountry: TeamMemberCountry
+  city: String
+  picture: File
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type TeamMemberCountry {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the TeamMemberCountry List config, or 2. As an alias to the field set on 'labelField' in the TeamMemberCountry List config, or 3. As an alias to a 'name' field on the TeamMemberCountry List (if one exists), or 4. As an alias to the 'id' field on the TeamMemberCountry List."""
+  _label_: String
+  id: ID
+  title: String
+  titleEs: String
+  titlePor: String
+  name: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type TeamMemberPosition {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the TeamMemberPosition List config, or 2. As an alias to the field set on 'labelField' in the TeamMemberPosition List config, or 3. As an alias to a 'name' field on the TeamMemberPosition List (if one exists), or 4. As an alias to the 'id' field on the TeamMemberPosition List."""
+  _label_: String
+  id: ID
+  title: String
+  titleEs: String
+  titlePor: String
+  name: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type User {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the User List config, or 2. As an alias to the field set on 'labelField' in the User List config, or 3. As an alias to a 'name' field on the User List (if one exists), or 4. As an alias to the 'id' field on the User List."""
+  _label_: String
+  id: ID
+  name: String
+  email: String
+  isAdmin: Boolean
+  password_is_set: Boolean
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+"""A keystone list"""
+type Vimeo {
+  """This virtual field will be resolved in one of the following ways (in this order): 1. Execution of 'labelResolver' set on the Vimeo List config, or 2. As an alias to the field set on 'labelField' in the Vimeo List config, or 3. As an alias to a 'name' field on the Vimeo List (if one exists), or 4. As an alias to the 'id' field on the Vimeo List."""
+  _label_: String
+  id: ID
+  title: String
+  lang(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): [Lang]
+  _langMeta(where: LangWhereInput, search: String, sortBy: [SortLangsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  order: Int
+  description: String
+  url: String
+  thumbnail: File
+  updatedAt: DateTime
+  createdAt: DateTime
+  updater: User
+  creator: User
+}
+
+type _ListAccess {
+  """Access Control settings for the currently logged in (or anonymous) user when performing 'create' operations. NOTE: 'create' can only return a Boolean. It is not possible to specify a declarative Where clause for this operation"""
+  create: Boolean
+  """Access Control settings for the currently logged in (or anonymous) user when performing 'read' operations."""
+  read: JSON
+  """Access Control settings for the currently logged in (or anonymous) user when performing 'update' operations."""
+  update: JSON
+  """Access Control settings for the currently logged in (or anonymous) user when performing 'delete' operations."""
+  delete: JSON
+  """Access Control settings for the currently logged in (or anonymous) user when performing 'auth' operations."""
+  auth: JSON
+}
+
+type _ListInputTypes {
+  """Input type for matching multiple items"""
+  whereInput: String
+  """Input type for matching a unique item"""
+  whereUniqueInput: String
+  """Create mutation input type name"""
+  createInput: String
+  """Create many mutation input type name"""
+  createManyInput: String
+  """Update mutation name input"""
+  updateInput: String
+  """Update many mutation name input"""
+  updateManyInput: String
+}
+
+type _ListMeta {
+  """The Keystone list key"""
+  key: String
+  """The Keystone List name"""
+  name: String @deprecated
+  """The list's user-facing description"""
+  description: String
+  """The list's display name in the Admin UI"""
+  label: String
+  """The list's singular display name"""
+  singular: String
+  """The list's plural display name"""
+  plural: String
+  """The list's data path"""
+  path: String
+  """Access control configuration for the currently authenticated request"""
+  access: _ListAccess
+  """Information on the generated GraphQL schema"""
+  schema: _ListSchema
+}
+
+type _ListMutations {
+  """Create mutation name"""
+  create: String
+  """Create many mutation name"""
+  createMany: String
+  """Update mutation name"""
+  update: String
+  """Update many mutation name"""
+  updateMany: String
+  """Delete mutation name"""
+  delete: String
+  """Delete many mutation name"""
+  deleteMany: String
+}
+
+type _ListQueries {
+  """Single-item query name"""
+  item: String
+  """All-items query name"""
+  list: String
+  """List metadata query name"""
+  meta: String
+}
+
+type _ListSchema {
+  """The typename as used in GraphQL queries"""
+  type: String
+  """Top level GraphQL query names which either return this type, or provide aggregate information about this type"""
+  queries: _ListQueries
+  """Top-level GraphQL mutation names"""
+  mutations: _ListMutations
+  """Top-level GraphQL input types"""
+  inputTypes: _ListInputTypes
+  """Information about fields defined on this list"""
+  fields(where: _ListSchemaFieldsInput): [_ListSchemaFields]
+  """Information about fields on other types which return this type, or provide aggregate information about this type"""
+  relatedFields: [_ListSchemaRelatedFields]
+}
+
+type _ListSchemaFields {
+  """The path of the field in its list"""
+  path: String
+  """The name of the field in its list"""
+  name: String @deprecated
+  """The field type (ie, Checkbox, Text, etc)"""
+  type: String
+}
+
+type _ListSchemaRelatedFields {
+  """The typename as used in GraphQL queries"""
+  type: String
+  """A list of GraphQL field names"""
+  fields: [String]
+}
+
+type _QueryMeta {
+  count: Int
+}
+
+type authenticateUserOutput {
+  """Used to make subsequent authenticated requests by setting this token in a header: 'Authorization: Bearer <token>'."""
+  token: String
+  """Retrieve information on the newly authenticated User here."""
+  item: User
+}
+
+type unauthenticateUserOutput {
+  """`true` when unauthentication succeeds. NOTE: unauthentication always succeeds when the request has an invalid or missing authentication token."""
+  success: Boolean
+}

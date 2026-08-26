@@ -1,0 +1,39 @@
+generated: '2026-08-26'
+method: probed
+source: https://api.provivi.com/admin/api
+format: graphql-errors
+note: >-
+  Provivi publishes no error reference. The envelope and the classes below were observed by sending
+  invalid read queries to the live endpoint on 2026-08-26. This is not RFC 9457 - GraphQL errors are
+  returned with HTTP 200 and a top-level `errors` array.
+envelope:
+  http_status: 200
+  body_field: errors
+  fields:
+  - message
+  - locations
+  - path
+  - extensions.code
+  - extensions.exception.stacktrace
+  - uid
+  - name
+problem_types:
+- code: GRAPHQL_VALIDATION_FAILED
+  name: ValidationError
+  title: Query does not validate against the schema
+  observed_message: 'Cannot query field "notARealField" on type "Query".'
+  http_status: 200
+  remediation: Introspect the schema and correct the field/argument names before retrying.
+  evidence:
+    url: https://api.provivi.com/admin/api
+    verified: '2026-08-26'
+findings:
+- id: stacktrace-leak
+  severity: informational
+  detail: >-
+    Error responses include extensions.exception.stacktrace with absolute server-side filesystem paths
+    (/home/ec2-user/provivi/apis/node_modules/...), which means Apollo Server is running with debug
+    output enabled in production. Observed 2026-08-26 on a plain validation error.
+  evidence:
+    url: https://api.provivi.com/admin/api
+    verified: '2026-08-26'

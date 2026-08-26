@@ -1,0 +1,601 @@
+generated: '2026-08-26'
+method: derived
+source: graphql/provivi-content-schema.graphql
+note: Entity-relationship graph derived from the live KeystoneJS GraphQL schema at https://api.provivi.com/admin/api.
+  Provivi publishes no object reference, so there are no documented id prefixes or domain descriptions to enrich
+  this with; every entity, field and relationship below is read straight from the schema. `updater`/`creator` on
+  every list are Keystone audit fields pointing at the CMS User list.
+entity_count: 20
+relationship_count: 82
+entities:
+- name: Article
+  query_all: allArticles
+  field_count: 17
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - slug
+  - state
+  - _langMeta
+  - excerpt
+  - description
+  - date
+  - thumbnail
+  - image
+  - metaData
+  relationships:
+  - kind: has_many
+    entity: Lang
+    via: lang
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: Article
+  meta_query: _allArticlesMeta
+- name: ContactBannerBlock
+  query_all: allBannertypes
+  field_count: 14
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - description
+  - bannerType
+  - cta
+  - ctaUrl
+  - backgroundImage
+  - image
+  - updatedAt
+  - createdAt
+  relationships:
+  - kind: has_one
+    entity: Vimeo
+    via: video
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: ContactBannerBlock
+  meta_query: _allBannertypesMeta
+- name: Content
+  query_all: allContents
+  field_count: 81
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - name
+  - _langMeta
+  - _templateHomeArticlesMeta
+  - _templateHomeFarmerMeta
+  - _templateHomeVimeoMeta
+  - _templateHomeArticleFeaturedMeta
+  - _templateHomeFQAMeta
+  - templateFarmerTitle
+  - templateFarmerContent
+  - templateScienceTitle1
+  relationships:
+  - kind: has_many
+    entity: Lang
+    via: lang
+  - kind: has_one
+    entity: ContactBannerBlock
+    via: templateHomeBanner1
+  - kind: has_many
+    entity: Article
+    via: templateHomeArticles
+  - kind: has_many
+    entity: Farmer
+    via: templateHomeFarmer
+  - kind: has_many
+    entity: Vimeo
+    via: templateHomeVimeo
+  - kind: has_many
+    entity: Article
+    via: templateHomeArticleFeatured
+  - kind: has_many
+    entity: Faq
+    via: templateHomeFQA
+  - kind: has_one
+    entity: ContactBannerBlock
+    via: templateScienceBanner1
+  - kind: has_many
+    entity: Vimeo
+    via: templateScienceVimeo
+  - kind: has_many
+    entity: Faq
+    via: templateScienceFQA
+  - kind: has_one
+    entity: Vimeo
+    via: templateAboutUsTab1Video
+  - kind: has_one
+    entity: ContactBannerBlock
+    via: templateAboutUsTab3Banner
+  - kind: has_one
+    entity: ContactBannerBlock
+    via: templateProductsBanner
+  - kind: has_many
+    entity: Farmer
+    via: templateProductsFarmer
+  - kind: has_many
+    entity: Vimeo
+    via: templateProductsVimeo
+  - kind: has_many
+    entity: Faq
+    via: templateProductsFQA
+  - kind: has_many
+    entity: Purpose
+    via: ourPurposeColumn1
+  - kind: has_many
+    entity: Purpose
+    via: ourPurposeColumn2
+  - kind: has_many
+    entity: Purpose
+    via: ourPurposeColumn3
+  - kind: has_many
+    entity: Goal
+    via: goals
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: Content
+  meta_query: _allContentsMeta
+- name: Department
+  query_all: allDepartments
+  field_count: 9
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - titleEs
+  - titlePor
+  - updatedAt
+  - createdAt
+  relationships:
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: Department
+  meta_query: _allDepartmentsMeta
+- name: Faq
+  query_all: allFaqs
+  field_count: 12
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - state
+  - _langMeta
+  - description
+  - score
+  - updatedAt
+  - createdAt
+  relationships:
+  - kind: has_many
+    entity: Lang
+    via: lang
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: Faq
+  meta_query: _allFaqsMeta
+- name: Farmer
+  query_all: allFarmers
+  field_count: 20
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - slug
+  - state
+  - _langMeta
+  - order
+  - picture
+  - country
+  - city
+  - description
+  - quote
+  relationships:
+  - kind: has_many
+    entity: Lang
+    via: lang
+  - kind: has_one
+    entity: Vimeo
+    via: vimeo
+  - kind: has_many
+    entity: Vimeo
+    via: video
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: Farmer
+  meta_query: _allFarmersMeta
+- name: Goal
+  query_all: allGoals
+  field_count: 8
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - icon
+  - updatedAt
+  - createdAt
+  relationships:
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: Goal
+  meta_query: _allGoalsMeta
+- name: HeroBlock
+  query_all: allHeroBlocks
+  field_count: 8
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - backgroundImage
+  - updatedAt
+  - createdAt
+  relationships:
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: HeroBlock
+  meta_query: _allHeroBlocksMeta
+- name: Investor
+  query_all: allInvestors
+  field_count: 14
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - slug
+  - state
+  - _langMeta
+  - about
+  - image
+  - website
+  - updatedAt
+  - createdAt
+  relationships:
+  - kind: has_many
+    entity: Lang
+    via: lang
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: Investor
+  meta_query: _allInvestorsMeta
+- name: Lang
+  query_all: allLangs
+  field_count: 8
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - name
+  - abbreviation
+  - updatedAt
+  - createdAt
+  relationships:
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: Lang
+  meta_query: _allLangsMeta
+- name: Multimedia
+  query_all: allMultimedias
+  field_count: 8
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - file
+  - updatedAt
+  - createdAt
+  relationships:
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: Multimedia
+  meta_query: _allMultimediasMeta
+- name: Page
+  query_all: allPages
+  field_count: 15
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - slug
+  - state
+  - template
+  - _langMeta
+  - updatedAt
+  - createdAt
+  relationships:
+  - kind: has_many
+    entity: Lang
+    via: lang
+  - kind: has_one
+    entity: HeroBlock
+    via: heroblock
+  - kind: has_one
+    entity: ContactBannerBlock
+    via: contactBannerBlock
+  - kind: has_one
+    entity: ContactBannerBlock
+    via: secondaryBannerBlock
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: Page
+  meta_query: _allPagesMeta
+- name: PressRelease
+  query_all: allPressReleases
+  field_count: 17
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - slug
+  - state
+  - _langMeta
+  - subTitle
+  - shortDescription
+  - description
+  - date
+  - mediaContactname
+  - mediaContactPhone
+  relationships:
+  - kind: has_many
+    entity: Lang
+    via: lang
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: PressRelease
+  meta_query: _allPressReleasesMeta
+- name: Product
+  query_all: allProducts
+  field_count: 59
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - slug
+  - state
+  - _langMeta
+  - logo
+  - logoBlack
+  - registro
+  - image
+  - excerpt
+  - content
+  relationships:
+  - kind: has_many
+    entity: Lang
+    via: lang
+  - kind: has_one
+    entity: Vimeo
+    via: video
+  - kind: has_many
+    entity: Multimedia
+    via: download
+  - kind: has_one
+    entity: HeroBlock
+    via: heroblock
+  - kind: has_one
+    entity: ContactBannerBlock
+    via: contactBannerBlock
+  - kind: has_many
+    entity: Faq
+    via: faq
+  - kind: has_many
+    entity: Article
+    via: article
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: Product
+  meta_query: _allProductsMeta
+- name: Purpose
+  query_all: allPurposes
+  field_count: 8
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - icon
+  - updatedAt
+  - createdAt
+  relationships:
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: Purpose
+  meta_query: _allPurposesMeta
+- name: TeamMember
+  query_all: allTeamMembers
+  field_count: 19
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - firstName
+  - lastName
+  - state
+  - _langMeta
+  - isFounder
+  - degree
+  - about
+  - city
+  - picture
+  - updatedAt
+  relationships:
+  - kind: has_many
+    entity: Lang
+    via: lang
+  - kind: has_one
+    entity: TeamMemberPosition
+    via: position
+  - kind: has_one
+    entity: Department
+    via: department
+  - kind: has_one
+    entity: TeamMemberCountry
+    via: teamMemberCountry
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: TeamMember
+  meta_query: _allTeamMembersMeta
+- name: TeamMemberCountry
+  query_all: allTeamMemberCountries
+  field_count: 10
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - titleEs
+  - titlePor
+  - name
+  - updatedAt
+  - createdAt
+  relationships:
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: TeamMemberCountry
+  meta_query: _allTeamMemberCountriesMeta
+- name: TeamMemberPosition
+  query_all: allTeamMemberPositions
+  field_count: 10
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - titleEs
+  - titlePor
+  - name
+  - updatedAt
+  - createdAt
+  relationships:
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: TeamMemberPosition
+  meta_query: _allTeamMemberPositionsMeta
+- name: User
+  query_all: allUsers
+  field_count: 10
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - name
+  - email
+  - isAdmin
+  - password_is_set
+  - updatedAt
+  - createdAt
+  - updater
+  - creator
+  relationships: []
+  query_one: User
+  meta_query: _allUsersMeta
+- name: Vimeo
+  query_all: allVimeos
+  field_count: 13
+  id_field: id
+  fields_sample:
+  - _label_
+  - id
+  - title
+  - _langMeta
+  - order
+  - description
+  - url
+  - thumbnail
+  - updatedAt
+  - createdAt
+  relationships:
+  - kind: has_many
+    entity: Lang
+    via: lang
+  - kind: has_one
+    entity: User
+    via: updater
+  - kind: has_one
+    entity: User
+    via: creator
+  query_one: Vimeo
+  meta_query: _allVimeosMeta

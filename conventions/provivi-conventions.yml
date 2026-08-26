@@ -1,0 +1,82 @@
+generated: '2026-08-26'
+method: derived
+source: graphql/provivi-content-schema.graphql
+note: >-
+  Provivi documents no API conventions - there is no developer portal or reference to read. Everything
+  below is derived from the live GraphQL schema and from observed responses, and is labelled with how it
+  was established. Nothing here is a published guarantee by Provivi.
+transport:
+  protocol: GraphQL over HTTPS
+  endpoint: https://api.provivi.com/admin/api
+  methods:
+  - POST (application/json)
+  - GET (?query= querystring, observed working)
+  server: KeystoneJS 5 / Apollo Server on Express behind Apache 2.4.58 (Amazon Linux)
+auth_style:
+  read: anonymous
+  write: keystone session (declared; not tested)
+  see: authentication/provivi-authentication.yml
+pagination:
+  style: offset
+  params:
+  - name: first
+    type: Int
+    role: page size
+  - name: skip
+    type: Int
+    role: offset
+  sorting:
+  - name: sortBy
+    type: "[Sort<List>By!]"
+    note: per-list enum of field_ASC / field_DESC values
+  - name: orderBy
+    type: String
+  filtering:
+  - name: where
+    type: "<List>WhereInput"
+    note: per-list input object with field/operator combinations (_contains, _in, _not, _gt, _lt, ...)
+  - name: search
+    type: String
+  counts:
+    pattern: "_all<List>Meta { count }"
+    note: every list has a companion meta field returning a total count
+  derived_from: introspection of Query.allArticles and its siblings
+field_selection:
+  style: native GraphQL selection sets
+  expansion: relationship fields are resolved inline (no separate expand parameter)
+  sparse_fields: inherent to GraphQL
+versioning:
+  scheme: none published
+  in_url: false
+  header: X-Keystone-App-Version
+  observed_value: 1.0.0
+  note: >-
+    The X-Keystone-App-Version response header is emitted by the Keystone framework, not by a Provivi
+    versioning policy. There is no published version, deprecation or change policy for this endpoint.
+request_tracing:
+  request_id_header: none observed
+  in_body: >-
+    Error objects carry a `uid` (e.g. cmtagimko01ssrvoc99a57y68) and a `name`; successful responses carry
+    an Apollo `extensions.tracing` block with resolver-level timings.
+error_envelope:
+  shape: GraphQL errors[] (message, locations, path, extensions.code, uid, name)
+  http_status_on_error: 200
+  see: errors/provivi-problem-types.yml
+rate_limit_signal:
+  headers: none observed
+  see: rate-limits/provivi-rate-limits.yml
+idempotency:
+  supported: false
+  reason: >-
+    No idempotency key header, no idempotency semantics, and no public write surface. GraphQL mutations
+    are declared but are not offered to third parties.
+dry_run_mode: na
+reversibility:
+  state: na
+  grade: na
+  rationale: >-
+    There is no public write surface. All 122 declared mutation fields belong to the site's CMS admin
+    surface and are not offered to third-party callers; this pipeline did not execute any of them.
+    Reversibility is therefore not applicable rather than absent, and Provivi states no reversal window
+    anywhere. No window is asserted here.
+  write_surfaces: []

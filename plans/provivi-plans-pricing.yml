@@ -1,0 +1,11 @@
+generated: '2026-08-26'
+method: searched
+source: https://www.provivi.com/en/catalog
+plan_count: 0
+note: >-
+  Provivi publishes no plans, no pricing page and no API pricing. It sells pheromone crop-protection
+  products through regional distribution partners (UPL, Koppert, AgNova, Andermatt, Susbin), and the
+  product catalog page carries no prices. There is no developer program, so there is nothing to price
+  for machine access. Probed https://www.provivi.com/en/catalog (HTTP 200) - product pages only. An
+  honest zero, not an omission.
+plans: []
