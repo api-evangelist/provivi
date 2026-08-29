@@ -11,6 +11,17 @@ description: >-
   Argentina. Provivi is not a software vendor: it runs no developer program, publishes no API
   documentation, terms of use or pricing for machine access, and ships no SDKs. The only machine-readable
   surface it operates is the undocumented KeystoneJS GraphQL backend that serves content to provivi.com.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://www.provivi.com/assets/favicon.png
 url: https://raw.githubusercontent.com/api-evangelist/provivi/refs/heads/main/apis.yml
 x-type: company
