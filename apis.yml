@@ -31,13 +31,13 @@ created: '2026-08-26'
 modified: '2026-08-26'
 tags:
 - Agriculture
-- AgTech
-- Biotechnology
-- Crop Protection
-- Pheromones
-- Sustainability
-- Content Management
-- GraphQL
+- agtech
+- biotechnology
+- crop-protection
+- pheromones
+- sustainability
+- content-management
+- graphql
 tags_raw:
 - agriculture
 - agtech
@@ -59,8 +59,8 @@ apis:
   humanURL: https://www.provivi.com/en
   baseURL: https://api.provivi.com/admin/api
   tags:
-  - GraphQL
-  - Content Management
+  - graphql
+  - content-management
   - Agriculture
   tags_raw:
   - graphql
