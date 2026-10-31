@@ -64,5 +64,106 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Provivi is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/provivi_stock/
+Provivi, Inc. is an agricultural biotechnology company headquartered at 1701 Colorado Avenue, Santa Monica, California, founded in 2013 by Pedro Coelho, Peter Meinhold and Nobel laureate Frances Arnold. Provivi manufactures insect sex pheromones using a patented catalytic olefin-metathesis process that cuts production cost far enough to make mating-disruption pest control economic on high-acreage row crops — corn, rice and soy — rather than only on high-value specialty crops. Its commercial products target fall armyworm (Spodoptera frugiperda) and are distributed through regional partners including UPL in Mexico, Koppert in Brazil, AgNova in Australia, Andermatt in East Africa and Susbin in Argentina. Provivi is not a software vendor: it runs no developer program, publishes no API documentation, terms of use or pricing for machine access, and ships no SDKs. The only machine-readable surface it operates is the undocumented KeystoneJS GraphQL backend that serves content to provivi.com.
+
+**Areas:** Agriculture · AgTech · Biotechnology · Crop Protection · Pheromones · Sustainability · Content Management · GraphQL
+
+## Provivi on APIs.io
+
+Everything profiled for Provivi is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/provivi/](https://apis.io/providers/provivi/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Provivi Content GraphQL API](https://apis.io/apis/provivi/provivi-content-graphql-api/) — The KeystoneJS 5 headless-CMS GraphQL backend that serves the provivi.com marketing site. It exposes 199 types, 83 query fields and 122 mutation fields…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### GraphQL (1)
+
+GraphQL schemas.
+
+- [Provivi Content GraphQL API](https://apis.io/graphqls/provivi/provivi-graphql/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Provivi Authentication](https://apis.io/security/provivi/provivi-authentication/)
+- [Provivi Domain Security](https://apis.io/security/provivi/provivi-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Provivi Plans Pricing](https://apis.io/plans/provivi/provivi-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Provivi Rate Limits](https://apis.io/rate-limits/provivi/provivi-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.provivi.com/en)
+- [Support](https://www.provivi.com/en/contact-us)
+- [Blog](https://www.provivi.com/en/news-articles)
+- [Terms of service](https://www.provivi.com/en/terms-service)
+- [Privacy policy](https://www.provivi.com/en/privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 25.4** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 67.0 |
+| Contract quality | 35.1 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 21.1 |
+
+**Agent readiness 20.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/provivi/](https://apis.io/providers/provivi/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Provivi: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/provivi/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
